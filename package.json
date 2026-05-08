@@ -1,0 +1,27 @@
+{
+  "name": "psychotherapie-wien",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "cms": "decap-server",
+    "build": "next build --webpack",
+    "start": "next start",
+    "export": "next build --webpack"
+  },
+  "dependencies": {
+    "@mantine/core": "latest",
+    "@mantine/hooks": "latest",
+    "@tabler/icons-react": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "decap-server": "^3.7.0",
+    "typescript": "latest"
+  }
+}

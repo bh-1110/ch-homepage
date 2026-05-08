@@ -1,0 +1,11 @@
+.next/
+out/
+node_modules/
+next-dev.log
+next-dev.err.log
+decap-server.log
+decap-server.err.log
+*.tsbuildinfo
+/uploads/
+index.html
+styles.css

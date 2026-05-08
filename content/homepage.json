@@ -1,0 +1,133 @@
+{
+  "brand": {
+    "name": "Mag. Anna Berger",
+    "subtitle": "Psychotherapeutin in Wien",
+    "mark": "AB"
+  },
+  "hero": {
+    "badge": "Psychotherapie in 1070 Wien",
+    "title": "Raum für Entlastung, Klarheit und neue innere Bewegung.",
+    "text": "Ich begleite Erwachsene, Jugendliche und Paare in belastenden Lebensphasen. Die Gespräche sind ruhig, vertraulich und auf das abgestimmt, was Sie gerade brauchen.",
+    "primaryButton": "Erstgespräch anfragen",
+    "secondaryButton": "Angebot ansehen",
+    "image": "https://images.unsplash.com/photo-1738145899003-47fa8c34ac4b?auto=format&fit=crop&w=1200&q=85",
+    "imageAlt": "Ruhiger Praxisraum mit Sitzgelegenheiten und Pflanzen",
+    "noteTitle": "Vertraulicher Rahmen",
+    "noteText": "Vor Ort in Wien oder online, Termine nach Vereinbarung."
+  },
+  "infoItems": [
+    {
+      "title": "Zugewandt",
+      "text": "Gespräche ohne Druck, mit Platz für Ungeordnetes."
+    },
+    {
+      "title": "Individuell",
+      "text": "Tempo und Zielrichtung orientieren sich an Ihnen."
+    },
+    {
+      "title": "Klar gerahmt",
+      "text": "50 Minuten pro Einheit, transparent und vertraulich."
+    }
+  ],
+  "servicesIntro": {
+    "label": "Angebot",
+    "title": "Wobei Psychotherapie unterstützen kann",
+    "text": "Manchmal reicht das gewohnte Funktionieren nicht mehr. Therapie kann helfen, Belastendes einzuordnen und neue Handlungsspielräume zu entwickeln."
+  },
+  "services": [
+    {
+      "title": "Einzeltherapie",
+      "text": "Ein geschützter Rahmen, um wiederkehrende Muster, innere Konflikte und belastende Erfahrungen behutsam zu verstehen."
+    },
+    {
+      "title": "Therapie für Jugendliche",
+      "text": "Begleitung bei Druck, Orientierungslosigkeit, Ängsten oder familiären Spannungen, mit ausreichend Raum für eigene Worte."
+    },
+    {
+      "title": "Paargespräche",
+      "text": "Strukturierte Gespräche, wenn Distanz, Streit oder Verletzungen den gemeinsamen Alltag prägen."
+    },
+    {
+      "title": "Online-Termine",
+      "text": "Psychotherapeutische Einheiten per Video, wenn der Weg in die Praxis gerade nicht möglich oder nicht passend ist."
+    }
+  ],
+  "approach": {
+    "label": "Arbeitsweise",
+    "title": "Fachlich fundiert, menschlich zugewandt.",
+    "paragraphs": [
+      "Meine therapeutische Haltung ist integrativ: Wir betrachten Ihre aktuelle Situation, biografische Erfahrungen, Beziehungsmuster und körperliche Signale als zusammenhängendes Ganzes.",
+      "Wichtig ist mir ein Raum, in dem Sie nichts darstellen müssen. Sie dürfen mit allem kommen, was Sie beschäftigt: klar oder widersprüchlich, leise oder dringend."
+    ],
+    "topicsTitle": "Häufige Themen",
+    "topics": [
+      "Angst und innere Unruhe",
+      "Erschöpfung, Stress und Burnout-Nähe",
+      "Krisen, Trauer und Lebensumbrüche",
+      "Beziehung, Familie und Selbstwert"
+    ]
+  },
+  "process": {
+    "label": "Ablauf",
+    "title": "Der Beginn soll überschaubar bleiben.",
+    "steps": [
+      {
+        "title": "Anfragen",
+        "text": "Sie schreiben eine kurze Nachricht oder rufen an. Ich melde mich zeitnah mit freien Terminen zurück."
+      },
+      {
+        "title": "Erstgespräch",
+        "text": "Wir klären Ihr Anliegen, Erwartungen, organisatorische Fragen und ob sich die Zusammenarbeit stimmig anfühlt."
+      },
+      {
+        "title": "Therapieprozess",
+        "text": "Frequenz, Dauer und Ziele entwickeln wir passend zu Ihrer Situation und überprüfen sie regelmäßig gemeinsam."
+      }
+    ]
+  },
+  "blogTeaser": {
+    "label": "Blog",
+    "title": "Impulse zu Therapie, Alltag und Selbstfürsorge",
+    "text": "Im Blog finden Sie kurze Beiträge aus der Praxis: verständlich, ruhig und als erste Orientierung gedacht.",
+    "badge": "Neu im Blog",
+    "cardTitle": "Was passiert im psychotherapeutischen Erstgespräch?",
+    "cardText": "Ein kurzer Überblick darüber, wie der Beginn einer Therapie ablaufen kann.",
+    "button": "Zum Blog"
+  },
+  "contact": {
+    "label": "Kontakt",
+    "title": "Ein erstes Gespräch vereinbaren",
+    "text": "Schreiben Sie gerne kurz, worum es geht und wann Sie gut erreichbar sind. Ich melde mich mit Terminvorschlägen zurück.",
+    "address": "PRAXIS AM HOF, 1010 Wien, Ledererhof 2 / Drahtgasse 3, TOP 6, Österreich",
+    "locations": [
+      {
+        "name": "PRAXIS AM HOF",
+        "address": "1010 Wien, Ledererhof 2 / Drahtgasse 3, TOP 6, Österreich"
+      },
+      {
+        "name": "PRAXIS AM BERG",
+        "address": "1170 Wien, Gerhard-Fritsch-Gasse 62, Österreich"
+      }
+    ],
+    "phone": "004369914067524",
+    "email": "mail@christelhable.com",
+    "emailSubject": "Terminvereinbarung für ein Erstgespräch",
+    "emailBody": "Sehr geehrte Frau Mag. Hable,\n\nich frage an um einen Termin für ein Erstgespräch zu vereinbaren.\n\nMeine Name ist: .........\nMeine Telefonnummer ist .......",
+    "contactFormTitle": "Kontaktformular",
+    "contactFormText": "Senden Sie uns eine kurze Nachricht. Bitte übermitteln Sie keine sensiblen Gesundheitsdaten über dieses Formular.",
+    "contactFormButton": "Anfrage senden",
+    "contactFormSuccess": "Danke, die Anfrage wurde vorbereitet.",
+    "contactFormEndpoint": "",
+    "googleTagManagerId": "",
+    "googleAdsTagId": "",
+    "phoneConversionSendTo": "",
+    "emailConversionSendTo": "",
+    "conversionCurrency": "EUR",
+    "conversionValue": "1.0",
+    "hoursTitle": "Ordinationszeiten",
+    "hours": [
+      "Montag bis Donnerstag nach Vereinbarung.",
+      "Online-Termine sind möglich."
+    ]
+  }
+}

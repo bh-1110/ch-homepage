@@ -1,0 +1,139 @@
+local_backend: true
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locale: "de"
+
+collections:
+  - name: "pages"
+    label: "Seiten"
+    label_singular: "Seite"
+    folder: "content/pages"
+    create: false
+    delete: false
+    extension: "json"
+    format: "json"
+    identifier_field: "cmsTitle"
+    summary: "{{cmsTitle}}"
+    fields:
+      - { label: "CMS Titel", name: "cmsTitle", widget: "hidden", default: "Homepage" }
+      - label: "Marke"
+        name: "brand"
+        widget: "object"
+        fields:
+          - { label: "Name", name: "name", widget: "string" }
+          - { label: "Untertitel", name: "subtitle", widget: "string" }
+          - { label: "Kürzel", name: "mark", widget: "string" }
+      - label: "Hero"
+        name: "hero"
+        widget: "object"
+        fields:
+          - { label: "Badge", name: "badge", widget: "string" }
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Text", name: "text", widget: "text" }
+          - { label: "Primärer Button", name: "primaryButton", widget: "string" }
+          - { label: "Sekundärer Button", name: "secondaryButton", widget: "string" }
+          - { label: "Bild-URL", name: "image", widget: "string" }
+          - { label: "Bildbeschreibung", name: "imageAlt", widget: "string" }
+          - { label: "Hinweis-Titel", name: "noteTitle", widget: "string" }
+          - { label: "Hinweis-Text", name: "noteText", widget: "string" }
+      - label: "Infokacheln"
+        name: "infoItems"
+        widget: "list"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Text", name: "text", widget: "text" }
+      - label: "Angebot Einleitung"
+        name: "servicesIntro"
+        widget: "object"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Text", name: "text", widget: "text" }
+      - label: "Angebote"
+        name: "services"
+        widget: "list"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Text", name: "text", widget: "text" }
+      - label: "Arbeitsweise"
+        name: "approach"
+        widget: "object"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Absätze", name: "paragraphs", widget: "list", field: { label: "Absatz", name: "paragraph", widget: "text" } }
+          - { label: "Themen-Titel", name: "topicsTitle", widget: "string" }
+          - { label: "Themen", name: "topics", widget: "list", field: { label: "Thema", name: "topic", widget: "string" } }
+      - label: "Ablauf"
+        name: "process"
+        widget: "object"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Titel", name: "title", widget: "string" }
+          - label: "Schritte"
+            name: "steps"
+            widget: "list"
+            fields:
+              - { label: "Titel", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+      - label: "Blog-Teaser"
+        name: "blogTeaser"
+        widget: "object"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Text", name: "text", widget: "text" }
+          - { label: "Badge", name: "badge", widget: "string" }
+          - { label: "Karten-Titel", name: "cardTitle", widget: "string" }
+          - { label: "Karten-Text", name: "cardText", widget: "text" }
+          - { label: "Button", name: "button", widget: "string" }
+      - label: "Kontakt"
+        name: "contact"
+        widget: "object"
+        fields:
+          - { label: "Label", name: "label", widget: "string" }
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Text", name: "text", widget: "text" }
+          - { label: "Adresse", name: "address", widget: "string" }
+          - label: "Praxisstandorte"
+            name: "locations"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Adresse", name: "address", widget: "string" }
+          - { label: "Telefon", name: "phone", widget: "string" }
+          - { label: "E-Mail", name: "email", widget: "string" }
+          - { label: "E-Mail Betreff", name: "emailSubject", widget: "string" }
+          - { label: "E-Mail Textvorlage", name: "emailBody", widget: "text" }
+          - { label: "Kontaktformular Titel", name: "contactFormTitle", widget: "string" }
+          - { label: "Kontaktformular Text", name: "contactFormText", widget: "text" }
+          - { label: "Kontaktformular Button", name: "contactFormButton", widget: "string" }
+          - { label: "Kontaktformular Erfolgsmeldung", name: "contactFormSuccess", widget: "string" }
+          - { label: "Kontaktformular Endpoint", name: "contactFormEndpoint", widget: "string", required: false }
+          - { label: "Google Tag Manager ID", name: "googleTagManagerId", widget: "string", required: false }
+          - { label: "Google Ads Tag ID", name: "googleAdsTagId", widget: "string", required: false }
+          - { label: "Telefon Conversion send_to", name: "phoneConversionSendTo", widget: "string", required: false }
+          - { label: "E-Mail Conversion send_to", name: "emailConversionSendTo", widget: "string", required: false }
+          - { label: "Conversion Währung", name: "conversionCurrency", widget: "string", default: "EUR", required: false }
+          - { label: "Conversion Wert", name: "conversionValue", widget: "string", default: "1.0", required: false }
+          - { label: "Öffnungszeiten Titel", name: "hoursTitle", widget: "string" }
+          - { label: "Öffnungszeiten", name: "hours", widget: "list", field: { label: "Zeile", name: "line", widget: "string" } }
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Datum", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Kurzbeschreibung", name: "excerpt", widget: "text" }
+      - { label: "Kategorie", name: "category", widget: "string", default: "Praxis" }
+      - { label: "Inhalt", name: "body", widget: "markdown" }
