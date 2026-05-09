@@ -9,5 +9,5 @@ decap-server.log
 decap-server.err.log
 *.tsbuildinfo
 /uploads/
-index.html
-styles.css
+/index.html
+/styles.css
