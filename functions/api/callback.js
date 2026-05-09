@@ -8,10 +8,11 @@ function renderCallback(status, content) {
     <title>GitHub authentication</title>
   </head>
   <body>
+    <p>Completing GitHub authentication...</p>
     <script>
       window.opener.postMessage(
         'authorization:github:${status}:${message}',
-        window.location.origin
+        '*'
       );
       window.close();
     </script>
