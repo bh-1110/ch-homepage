@@ -4,6 +4,9 @@ backend:
   name: github
   repo: bh-1110/ch-homepage
   branch: main
+  site_domain: https://ch-homepage.pages.dev
+  base_url: https://ch-homepage.pages.dev
+  auth_endpoint: /api/auth
 
 media_folder: "public/uploads"
 public_folder: "/uploads"

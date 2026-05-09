@@ -31,8 +31,27 @@ Environment variables:
 
 - `CMS_USER`: username for `/admin`
 - `CMS_PASSWORD`: password for `/admin`
+- `GITHUB_CLIENT_ID`: GitHub OAuth app client ID
+- `GITHUB_CLIENT_SECRET`: GitHub OAuth app client secret
 
 Set both for production and preview environments.
+
+## GitHub OAuth for Decap CMS
+
+Decap CMS needs a GitHub OAuth app so it can write content changes back to this repository.
+
+Create the OAuth app in GitHub:
+
+- Application name: `ch-homepage CMS`
+- Homepage URL: `https://ch-homepage.pages.dev`
+- Authorization callback URL: `https://ch-homepage.pages.dev/api/callback`
+
+Then add the app credentials to Cloudflare Pages environment variables:
+
+- `GITHUB_CLIENT_ID`: text
+- `GITHUB_CLIENT_SECRET`: secret
+
+If the Cloudflare Pages project URL changes or a custom domain should be used for CMS login, update both the GitHub OAuth app URLs and `backend.site_domain` / `backend.base_url` in `public/admin/config.yml`.
 
 ## Decap CMS
 
