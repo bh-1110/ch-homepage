@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Anchor,
   Badge,
@@ -38,6 +38,29 @@ import type { HomepageContent } from '../lib/homepage';
 import { trackContactAction } from './tracking';
 
 export function HomeClient({ content }: { content: HomepageContent }) {
+  const [runtimeContent, setRuntimeContent] = useState(content);
+
+  useEffect(() => {
+    let active = true;
+
+    fetch('/api/content', { cache: 'no-store' })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => {
+        if (active && data?.content) {
+          setRuntimeContent(data.content as HomepageContent);
+        }
+      })
+      .catch(() => {
+        // Keep the bundled content when the runtime CMS is not initialized yet.
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  content = runtimeContent;
+
   const contactEmailHref = `mailto:${content.contact.email}?subject=${encodeURIComponent(
     content.contact.emailSubject
   )}&body=${encodeURIComponent(content.contact.emailBody)}`;
