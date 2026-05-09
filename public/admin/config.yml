@@ -1,7 +1,8 @@
 local_backend: true
 
 backend:
-  name: git-gateway
+  name: github
+  repo: bh-1110/ch-homepage
   branch: main
 
 media_folder: "public/uploads"

@@ -9,6 +9,14 @@ Use two branches:
 
 Cloudflare Pages can build production from `main` and preview deployments from `test`.
 
+If the repository does not exist yet, create an empty GitHub repository and connect it:
+
+```powershell
+git remote add origin https://github.com/OWNER/REPOSITORY.git
+git push -u origin main
+git push -u origin test
+```
+
 ## Cloudflare Pages
 
 Project settings:
@@ -17,6 +25,7 @@ Project settings:
 - Build command: `npm run build`
 - Build output directory: `out`
 - Production branch: `main`
+- Root directory: repository root
 
 Environment variables:
 
@@ -45,3 +54,5 @@ backend:
 ```
 
 Everyone who edits content through Decap must have write access to the GitHub repository unless a separate OAuth/Open Authoring setup is added.
+
+The current `local_backend: true` line may stay in the file; it only enables local editing when `npm.cmd run cms` is running.

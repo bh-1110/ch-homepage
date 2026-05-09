@@ -3,6 +3,8 @@ out/
 node_modules/
 next-dev.log
 next-dev.err.log
+next-dev-live.log
+next-dev-live.err.log
 decap-server.log
 decap-server.err.log
 *.tsbuildinfo
