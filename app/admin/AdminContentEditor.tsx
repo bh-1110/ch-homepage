@@ -41,7 +41,7 @@ export function AdminContentEditor({ initialContent }: { initialContent: Homepag
       .then((response) => response.json())
       .then((data) => {
         if (data.content) {
-          setContent(data.content);
+          setContent(mergeHomepageContent(initialContent, data.content as Partial<HomepageContent>));
           setUpdatedAt(data.updatedAt ?? null);
           setStatus('Runtime-Inhalte aus Cloudflare geladen.');
         } else {
@@ -142,6 +142,8 @@ export function AdminContentEditor({ initialContent }: { initialContent: Homepag
             <Tabs.Tab value="angebot">Angebot</Tabs.Tab>
             <Tabs.Tab value="kontakt">Kontakt</Tabs.Tab>
             <Tabs.Tab value="blog">Blog</Tabs.Tab>
+            <Tabs.Tab value="footer">Footer</Tabs.Tab>
+            <Tabs.Tab value="rechtliches">Rechtliches</Tabs.Tab>
           </Tabs.List>
 
           <Tabs.Panel value="start" pt="lg">
@@ -243,6 +245,36 @@ export function AdminContentEditor({ initialContent }: { initialContent: Homepag
           <Tabs.Panel value="blog" pt="lg">
             <SectionIntroEditor title="Blog-Teaser" value={content.blogTeaser} path={['blogTeaser']} onChange={update} />
           </Tabs.Panel>
+
+          <Tabs.Panel value="footer" pt="lg">
+            <AdminCard title="Footer und Download">
+              <Stack>
+                <TextInput label="Footer-Text" value={content.footer.text} onChange={(event) => update(['footer', 'text'], event.currentTarget.value)} />
+                <SimpleGrid cols={{ base: 1, md: 2 }}>
+                  <TextInput label="Download-Beschriftung" value={content.footer.downloadLabel} onChange={(event) => update(['footer', 'downloadLabel'], event.currentTarget.value)} />
+                  <TextInput label="Download-Datei" value={content.footer.downloadHref} onChange={(event) => update(['footer', 'downloadHref'], event.currentTarget.value)} />
+                </SimpleGrid>
+              </Stack>
+            </AdminCard>
+          </Tabs.Panel>
+
+          <Tabs.Panel value="rechtliches" pt="lg">
+            <Stack gap="md">
+              <AdminCard title="Impressum">
+                <Stack>
+                  <TextInput label="Titel" value={content.legalPages.impressum.title} onChange={(event) => update(['legalPages', 'impressum', 'title'], event.currentTarget.value)} />
+                  <Textarea label="Text" minRows={16} value={content.legalPages.impressum.text} onChange={(event) => update(['legalPages', 'impressum', 'text'], event.currentTarget.value)} />
+                </Stack>
+              </AdminCard>
+
+              <AdminCard title="Datenschutzerklärung">
+                <Stack>
+                  <TextInput label="Titel" value={content.legalPages.datenschutzerklaerung.title} onChange={(event) => update(['legalPages', 'datenschutzerklaerung', 'title'], event.currentTarget.value)} />
+                  <Textarea label="Text" minRows={18} value={content.legalPages.datenschutzerklaerung.text} onChange={(event) => update(['legalPages', 'datenschutzerklaerung', 'text'], event.currentTarget.value)} />
+                </Stack>
+              </AdminCard>
+            </Stack>
+          </Tabs.Panel>
         </Tabs>
 
         <Divider my="xl" />
@@ -257,6 +289,31 @@ export function AdminContentEditor({ initialContent }: { initialContent: Homepag
       </Container>
     </Box>
   );
+}
+
+function mergeHomepageContent(fallback: HomepageContent, runtime: Partial<HomepageContent>): HomepageContent {
+  return {
+    ...fallback,
+    ...runtime,
+    brand: { ...fallback.brand, ...runtime.brand },
+    hero: { ...fallback.hero, ...runtime.hero },
+    servicesIntro: { ...fallback.servicesIntro, ...runtime.servicesIntro },
+    approach: { ...fallback.approach, ...runtime.approach },
+    process: { ...fallback.process, ...runtime.process },
+    blogTeaser: { ...fallback.blogTeaser, ...runtime.blogTeaser },
+    contact: { ...fallback.contact, ...runtime.contact },
+    footer: { ...fallback.footer, ...runtime.footer },
+    legalPages: {
+      impressum: {
+        ...fallback.legalPages.impressum,
+        ...runtime.legalPages?.impressum
+      },
+      datenschutzerklaerung: {
+        ...fallback.legalPages.datenschutzerklaerung,
+        ...runtime.legalPages?.datenschutzerklaerung
+      }
+    }
+  };
 }
 
 function AdminCard({ title, children }: { title: string; children: React.ReactNode }) {

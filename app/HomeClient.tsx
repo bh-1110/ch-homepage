@@ -47,7 +47,7 @@ export function HomeClient({ content }: { content: HomepageContent }) {
       .then((response) => (response.ok ? response.json() : null))
       .then((data) => {
         if (active && data?.content) {
-          setRuntimeContent(data.content as HomepageContent);
+          setRuntimeContent(mergeHomepageContent(content, data.content as Partial<HomepageContent>));
         }
       })
       .catch(() => {
@@ -340,8 +340,54 @@ export function HomeClient({ content }: { content: HomepageContent }) {
           </Grid>
         </Container>
       </Box>
+
+      <Box component="footer" className="siteFooter">
+        <Container size="xl">
+          <Group justify="space-between" align="center" gap="md">
+            <Text size="sm" c="dimmed">
+              {content.footer.text}
+            </Text>
+            <Group gap="md">
+              <Anchor href="/impressum" size="sm" c="dark">
+                Impressum
+              </Anchor>
+              <Anchor href="/datenschutzerklaerung" size="sm" c="dark">
+                Datenschutzerklärung
+              </Anchor>
+              <Anchor href={content.footer.downloadHref} size="sm" c="dark" download>
+                {content.footer.downloadLabel}
+              </Anchor>
+            </Group>
+          </Group>
+        </Container>
+      </Box>
     </Box>
   );
+}
+
+function mergeHomepageContent(fallback: HomepageContent, runtime: Partial<HomepageContent>): HomepageContent {
+  return {
+    ...fallback,
+    ...runtime,
+    brand: { ...fallback.brand, ...runtime.brand },
+    hero: { ...fallback.hero, ...runtime.hero },
+    servicesIntro: { ...fallback.servicesIntro, ...runtime.servicesIntro },
+    approach: { ...fallback.approach, ...runtime.approach },
+    process: { ...fallback.process, ...runtime.process },
+    blogTeaser: { ...fallback.blogTeaser, ...runtime.blogTeaser },
+    contact: { ...fallback.contact, ...runtime.contact },
+    footer: { ...fallback.footer, ...runtime.footer },
+    legalPages: {
+      impressum: {
+        ...fallback.legalPages.impressum,
+        ...runtime.legalPages?.impressum
+      },
+      datenschutzerklaerung: {
+        ...fallback.legalPages.datenschutzerklaerung,
+        ...runtime.legalPages?.datenschutzerklaerung
+      }
+    }
+  };
 }
 
 function ContactForm({

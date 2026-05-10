@@ -1,134 +1,149 @@
 {
-  "contact": {
-    "googleTagManagerId": "",
-    "phoneConversionSendTo": "",
-    "conversionCurrency": "EUR",
-    "hoursTitle": "Ordinationszeiten",
-    "text": "Schreiben Sie gerne kurz, worum es geht und wann Sie gut erreichbar sind. Ich melde mich mit Terminvorschlägen zurück.",
-    "phone": "004369914067524",
-    "hours": [
-      "Montag bis Freitag nach Vereinbarung.",
-      "Online-Termine sind möglich."
-    ],
-    "emailSubject": "Terminvereinbarung für ein Erstgespräch",
-    "contactFormText": "Senden Sie uns eine kurze Nachricht. Bitte übermitteln Sie keine sensiblen Gesundheitsdaten über dieses Formular.",
-    "label": "Kontakt",
-    "contactFormTitle": "Kontaktformular",
-    "address": "PRAXIS AM HOF, 1010 Wien, Ledererhof 2 / Drahtgasse 3, TOP 6, Österreich",
-    "emailConversionSendTo": "",
-    "contactFormButton": "Anfrage senden",
-    "title": "Ein erstes Gespräch vereinbaren",
-    "contactFormEndpoint": "",
-    "conversionValue": "1.0",
-    "email": "mail@christelhable.com",
-    "googleAdsTagId": "",
-    "emailBody": "Sehr geehrte Frau Mag. Hable,\n\nich frage an um einen Termin für ein Erstgespräch zu vereinbaren.\n\nMeine Name ist: .........\nMeine Telefonnummer ist .......",
-    "locations": [
-      {
-        "name": "PRAXIS AM HOF",
-        "address": "1010 Wien, Ledererhof 2 / Drahtgasse 3, TOP 6, Österreich"
-      },
-      {
-        "name": "PRAXIS AM BERG",
-        "address": "1170 Wien, Gerhard-Fritsch-Gasse 62, Österreich"
-      }
-    ],
-    "contactFormSuccess": "Danke, die Anfrage wurde vorbereitet."
-  },
-  "brand": {
-    "name": "Mag. Christel Hable",
-    "subtitle": "Psychotherapeutin in Wien",
-    "mark": "CH1"
-  },
-  "approach": {
-    "label": "Arbeitsweise",
-    "title": "Fachlich fundiert, menschlich zugewandt.",
-    "paragraphs": [
-      "Meine therapeutische Haltung ist integrativ: Wir betrachten Ihre aktuelle Situation, biografische Erfahrungen, Beziehungsmuster und körperliche Signale als zusammenhängendes Ganzes.",
-      "Wichtig ist mir ein Raum, in dem Sie nichts darstellen müssen. Sie dürfen mit allem kommen, was Sie beschäftigt: klar oder widersprüchlich, leise oder dringend."
-    ],
-    "topicsTitle": "Häufige Themen",
-    "topics": [
-      "Angst und innere Unruhe",
-      "Erschöpfung, Stress und Burnout-Nähe",
-      "Krisen, Trauer und Lebensumbrüche",
-      "Beziehung, Familie und Selbstwert"
-    ]
-  },
-  "servicesIntro": {
-    "label": "Angebot",
-    "title": "Wobei Psychotherapie unterstützen kann",
-    "text": "Manchmal reicht das gewohnte Funktionieren nicht mehr. Therapie kann helfen, Belastendes einzuordnen und neue Handlungsspielräume zu entwickeln."
-  },
-  "process": {
-    "label": "Ablauf",
-    "title": "Der Beginn soll überschaubar bleiben.",
-    "steps": [
-      {
-        "title": "Anfragen",
-        "text": "Sie schreiben eine kurze Nachricht oder rufen an. Ich melde mich zeitnah mit freien Terminen zurück."
-      },
-      {
-        "title": "Erstgespräch",
-        "text": "Wir klären Ihr Anliegen, Erwartungen, organisatorische Fragen und ob sich die Zusammenarbeit stimmig anfühlt."
-      },
-      {
-        "title": "Therapieprozess",
-        "text": "Frequenz, Dauer und Ziele entwickeln wir passend zu Ihrer Situation und überprüfen sie regelmäßig gemeinsam."
-      }
-    ]
-  },
-  "cmsTitle": "Homepage",
-  "blogTeaser": {
-    "label": "Blog",
-    "title": "Impulse zu Therapie, Alltag und Selbstfürsorge",
-    "text": "Im Blog finden Sie kurze Beiträge aus der Praxis: verständlich, ruhig und als erste Orientierung gedacht.",
-    "badge": "Neu im Blog",
-    "cardTitle": "Was passiert im psychotherapeutischen Erstgespräch?",
-    "cardText": "Ein kurzer Überblick darüber, wie der Beginn einer Therapie ablaufen kann.",
-    "button": "Zum Blog"
-  },
-  "infoItems": [
-    {
-      "title": "Zugewandt",
-      "text": "Gespräche ohne Druck, mit Platz für Ungeordnetes."
-    },
-    {
-      "title": "Individuell",
-      "text": "Tempo und Zielrichtung orientieren sich an Ihnen."
-    },
-    {
-      "title": "Klar gerahmt",
-      "text": "50 Minuten pro Einheit, transparent und vertraulich."
-    }
-  ],
-  "hero": {
-    "badge": "Psychotherapie in 1010 und 1170 Wien",
-    "noteTitle": "Vertraulicher Rahmen",
-    "secondaryButton": "Angebot ansehen",
-    "text": "Ich begleite Erwachsene, Jugendliche und Paare in belastenden Lebensphasen. Die Gespräche sind ruhig, vertraulich und auf das abgestimmt, was Sie gerade brauchen.",
-    "imageAlt": "Ruhiger Praxisraum mit Sitzgelegenheiten und Pflanzen",
-    "primaryButton": "Erstgespräch anfragen",
-    "title": "Raum für Entlastung, Klarheit und neue innere Bewegung.",
-    "image": "/uploads/PortraitCH2.JPG",
-    "noteText": "Vor Ort in Wien oder online, Termine nach Vereinbarung."
-  },
-  "services": [
-    {
-      "title": "Einzeltherapie",
-      "text": "Ein geschützter Rahmen, um wiederkehrende Muster, innere Konflikte und belastende Erfahrungen behutsam zu verstehen."
-    },
-    {
-      "title": "Therapie für Jugendliche",
-      "text": "Begleitung bei Druck, Orientierungslosigkeit, Ängsten oder familiären Spannungen, mit ausreichend Raum für eigene Worte."
-    },
-    {
-      "title": "Paargespräche",
-      "text": "Strukturierte Gespräche, wenn Distanz, Streit oder Verletzungen den gemeinsamen Alltag prägen."
-    },
-    {
-      "title": "Online-Termine",
-      "text": "Psychotherapeutische Einheiten per Video, wenn der Weg in die Praxis gerade nicht möglich oder nicht passend ist."
-    }
-  ]
+    "contact":  {
+                    "googleTagManagerId":  "",
+                    "phoneConversionSendTo":  "",
+                    "conversionCurrency":  "EUR",
+                    "hoursTitle":  "Ordinationszeiten",
+                    "text":  "Schreiben Sie gerne kurz, worum es geht und wann Sie gut erreichbar sind. Ich melde mich mit Terminvorschlägen zurück.",
+                    "phone":  "004369914067524",
+                    "hours":  [
+                                  "Montag bis Freitag nach Vereinbarung.",
+                                  "Online-Termine sind möglich."
+                              ],
+                    "emailSubject":  "Terminvereinbarung für ein Erstgespräch",
+                    "contactFormText":  "Senden Sie uns eine kurze Nachricht. Bitte übermitteln Sie keine sensiblen Gesundheitsdaten über dieses Formular.",
+                    "label":  "Kontakt",
+                    "contactFormTitle":  "Kontaktformular",
+                    "address":  "PRAXIS AM HOF, 1010 Wien, Ledererhof 2 / Drahtgasse 3, TOP 6, Österreich",
+                    "emailConversionSendTo":  "",
+                    "contactFormButton":  "Anfrage senden",
+                    "title":  "Ein erstes Gespräch vereinbaren",
+                    "contactFormEndpoint":  "",
+                    "conversionValue":  "1.0",
+                    "email":  "mail@christelhable.com",
+                    "googleAdsTagId":  "",
+                    "emailBody":  "Sehr geehrte Frau Mag. Hable,\n\nich frage an um einen Termin für ein Erstgespräch zu vereinbaren.\n\nMeine Name ist: .........\nMeine Telefonnummer ist .......",
+                    "locations":  [
+                                      {
+                                          "name":  "PRAXIS AM HOF",
+                                          "address":  "1010 Wien, Ledererhof 2 / Drahtgasse 3, TOP 6, Österreich"
+                                      },
+                                      {
+                                          "name":  "PRAXIS AM BERG",
+                                          "address":  "1170 Wien, Gerhard-Fritsch-Gasse 62, Österreich"
+                                      }
+                                  ],
+                    "contactFormSuccess":  "Danke, die Anfrage wurde vorbereitet."
+                },
+    "brand":  {
+                  "name":  "Mag. Christel Hable",
+                  "subtitle":  "Psychotherapeutin in Wien",
+                  "mark":  "CH1"
+              },
+    "approach":  {
+                     "label":  "Arbeitsweise",
+                     "title":  "Fachlich fundiert, menschlich zugewandt.",
+                     "paragraphs":  [
+                                        "Meine therapeutische Haltung ist integrativ: Wir betrachten Ihre aktuelle Situation, biografische Erfahrungen, Beziehungsmuster und körperliche Signale als zusammenhängendes Ganzes.",
+                                        "Wichtig ist mir ein Raum, in dem Sie nichts darstellen müssen. Sie dürfen mit allem kommen, was Sie beschäftigt: klar oder widersprüchlich, leise oder dringend."
+                                    ],
+                     "topicsTitle":  "Häufige Themen",
+                     "topics":  [
+                                    "Angst und innere Unruhe",
+                                    "Erschöpfung, Stress und Burnout-Nähe",
+                                    "Krisen, Trauer und Lebensumbrüche",
+                                    "Beziehung, Familie und Selbstwert"
+                                ]
+                 },
+    "servicesIntro":  {
+                          "label":  "Angebot",
+                          "title":  "Wobei Psychotherapie unterstützen kann",
+                          "text":  "Manchmal reicht das gewohnte Funktionieren nicht mehr. Therapie kann helfen, Belastendes einzuordnen und neue Handlungsspielräume zu entwickeln."
+                      },
+    "process":  {
+                    "label":  "Ablauf",
+                    "title":  "Der Beginn soll überschaubar bleiben.",
+                    "steps":  [
+                                  {
+                                      "title":  "Anfragen",
+                                      "text":  "Sie schreiben eine kurze Nachricht oder rufen an. Ich melde mich zeitnah mit freien Terminen zurück."
+                                  },
+                                  {
+                                      "title":  "Erstgespräch",
+                                      "text":  "Wir klären Ihr Anliegen, Erwartungen, organisatorische Fragen und ob sich die Zusammenarbeit stimmig anfühlt."
+                                  },
+                                  {
+                                      "title":  "Therapieprozess",
+                                      "text":  "Frequenz, Dauer und Ziele entwickeln wir passend zu Ihrer Situation und überprüfen sie regelmäßig gemeinsam."
+                                  }
+                              ]
+                },
+    "cmsTitle":  "Homepage",
+    "blogTeaser":  {
+                       "label":  "Blog",
+                       "title":  "Impulse zu Therapie, Alltag und Selbstfürsorge",
+                       "text":  "Im Blog finden Sie kurze Beiträge aus der Praxis: verständlich, ruhig und als erste Orientierung gedacht.",
+                       "badge":  "Neu im Blog",
+                       "cardTitle":  "Was passiert im psychotherapeutischen Erstgespräch?",
+                       "cardText":  "Ein kurzer Überblick darüber, wie der Beginn einer Therapie ablaufen kann.",
+                       "button":  "Zum Blog"
+                   },
+    "infoItems":  [
+                      {
+                          "title":  "Zugewandt",
+                          "text":  "Gespräche ohne Druck, mit Platz für Ungeordnetes."
+                      },
+                      {
+                          "title":  "Individuell",
+                          "text":  "Tempo und Zielrichtung orientieren sich an Ihnen."
+                      },
+                      {
+                          "title":  "Klar gerahmt",
+                          "text":  "50 Minuten pro Einheit, transparent und vertraulich."
+                      }
+                  ],
+    "hero":  {
+                 "badge":  "Psychotherapie in 1010 und 1170 Wien",
+                 "noteTitle":  "Vertraulicher Rahmen",
+                 "secondaryButton":  "Angebot ansehen",
+                 "text":  "Ich begleite Erwachsene, Jugendliche und Paare in belastenden Lebensphasen. Die Gespräche sind ruhig, vertraulich und auf das abgestimmt, was Sie gerade brauchen.",
+                 "imageAlt":  "Ruhiger Praxisraum mit Sitzgelegenheiten und Pflanzen",
+                 "primaryButton":  "Erstgespräch anfragen",
+                 "title":  "Raum für Entlastung, Klarheit und neue innere Bewegung.",
+                 "image":  "/uploads/PortraitCH2.JPG",
+                 "noteText":  "Vor Ort in Wien oder online, Termine nach Vereinbarung."
+             },
+    "services":  [
+                     {
+                         "title":  "Einzeltherapie",
+                         "text":  "Ein geschützter Rahmen, um wiederkehrende Muster, innere Konflikte und belastende Erfahrungen behutsam zu verstehen."
+                     },
+                     {
+                         "title":  "Therapie für Jugendliche",
+                         "text":  "Begleitung bei Druck, Orientierungslosigkeit, Ängsten oder familiären Spannungen, mit ausreichend Raum für eigene Worte."
+                     },
+                     {
+                         "title":  "Paargespräche",
+                         "text":  "Strukturierte Gespräche, wenn Distanz, Streit oder Verletzungen den gemeinsamen Alltag prägen."
+                     },
+                     {
+                         "title":  "Online-Termine",
+                         "text":  "Psychotherapeutische Einheiten per Video, wenn der Weg in die Praxis gerade nicht möglich oder nicht passend ist."
+                     }
+                 ],
+    "footer":  {
+                   "text":  "© 2026 Mag. Christel Hable. Alle Rechte vorbehalten.",
+                   "downloadLabel":  "Textbausteine herunterladen",
+                   "downloadHref":  "/downloads/textbausteine-index.txt"
+               },
+    "legalPages":  {
+                       "impressum":  {
+                                         "title":  "Impressum",
+                                         "text":  "Mag Christel Hable - Psychotherapie - Impressum\nImpressum\nSeiteninhaber\nMag Christel Hable\nGerhard Fritsch G. 62\n1170 Wien, Österreich\n(++43) 069914067524\nmail@christelhable.com\nwww.christelhable.com\nAusgeübte Tätigkeit\nPsychotherapie\nRechtliche Grundlage der Berufsausübung\nBundesgesetz vom 7. Juni 1990 über die Ausübung der Psychotherapie BGBl. 361/1990 (Psychotherapiegesetz)\nBehörde\nBundesministerium für Bildung, Wissenschaft und Forschung\nMitgliedschaften\nVereinigung der österreichischen PsychotherapeutInnen (VÖPP)\nWirtschaftskammer Wien\nOnline-Streitbeilegung\nVerbraucher haben, zusätzlich zur Möglichkeit der mündlichen oder schriftlichen Beschwerde an meine oben angeführten Kontaktdaten, das Recht, Beschwerden an die Online-Streitbeilegungsplattform der EU zu richten: http://ec.europa.eu/odr.\nHaftungsausschluss\nNaturgemäß kann ich keine Haftung für die Inhalte anderer Seiten, insbesonders wenn diese in einem eigenen Fenster dargestellt werden übernehmen. Verweise (\"links\") zu anderen Seiten sind entweder vorgeschrieben oder stellen eine kostenlose Serviceleistung dar und ich lehne ausdrücklich jegliche Verantwortung für verlinkte Informationen oder deren Verwendung ab.\nCopyright 2022\nDie Inhalte dieser Website ist mein geistiges Eigentum und ganz wie auch auszugsweise urheberrechtlich geschützt. Die Vervielfältigung, Verbeitung und der (insbesonders gewerbliche) Gebrauch sind nur nach meiner schriftlichen Zustimmung hierzu zulässig."
+                                     },
+                       "datenschutzerklaerung":  {
+                                                     "title":  "Datenschutzerklärung",
+                                                     "text":  "Mag CHristel Hable - Psychotherapie - Datenschutzerklärung\nDatenschutzerklärung\nDiese Datenschutzerklärung informiert über Umfang und Zweck der Speicherung und Verwendung personenbezogenen Daten meiner\nKunden bzw. Nutzer dieser Website im Sinne des\nDatenschutzgesetzes (DSG) BGBl. 165/1999 und der\nDatenschutzgrundverordnung (DSGVO) 2016/679 EU.\nWenn Sie per Formular auf der Website oder per E-Mail Kontakt mit mir aufnehmen, werden Ihre angegebenen Daten zwecks\nBearbeitung der Anfrage und für den Fall von Anschlussfragen zwölf Monate gespeichert. Ich unterliege durch das\nPsychotherapiegesetz einer strengen Verschwiegenheitspflicht und gebe schon deshalb Ihre Daten grundsätzlich nicht weiter.\nMeine Webseite nutzt Cookies, das sind kleine Textdateien, die Ihr Browser speichert. Cookies richten, im Gegensatz zu\nViren, keinerlei Schaden an sondern sollen Websites nutzerfreundlicher machen. Sie haben die Möglichkeit, in den\nEinstellungen Ihres Browers die Verwendung von Cookies gänzlich zu untersagen oder nur nach Nachfrage zu erlauben.\nDiese Website verwendet Google Maps, einen Kartendienst der Google Inc., 1600 Amphitheatre Parkway, Mountain View, CA 94043\nUSA, um Ihnen den Weg zu meinen Praxen zu erleichtern. Google Maps erhebt, speichert und verwendet Ihre Nutzungsdaten. Das können\nSie durch die Deaktivierung von Javascript in Ihrem Browser unterbinden. Weiteres dazu in den Nutzungsbedingungen von\nGoogle\nund Google\nMaps.\nDer Aufruf einer Website (jeder Website) erzeugt (zumindest) bei Ihrem Provider und dem Provider der aufgerufenen Website\n(im konkreten Fall also mein Internetprovider easyname.at Datenspuren. Falls Sie dies unterbinden wollen, überlegen Sie den\nEinsatz einer sog. VPN-Verbindung oder eines TOR-Browsers.\nIhnen stehen bezüglich Ihrer bei mir gespeicherten Daten grundsätzlich die Rechte auf Auskunft, Berichtigung, Löschung,\nEinschränkung, Datenübertragbarkeit, Widerruf und Widerspruch zu. Wenn Sie glauben, dass die Verarbeitung Ihrer Daten\ngegen das Datenschutzrecht verstößt oder Ihre datenschutzrechtlichen Ansprüche sonst in einer Weise verletzt worden sind,\nkönnen Sie sich per Email an mail@christelhable.com\noder bei der Datenschutzbehörde beschweren.\nSie erreichen mich unter folgenden Kontaktdaten: Mag Christel Hable, Gerhard Fritsch G. 62, 1170 Wien,\nTelefon (+43) 069914067524, Email mail@christelhable.com.\nStand: 3.1.2022"
+                                                 }
+                   }
 }

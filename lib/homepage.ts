@@ -66,6 +66,15 @@ export type HomepageContent = {
     hoursTitle: string;
     hours: string[];
   };
+  footer: {
+    text: string;
+    downloadLabel: string;
+    downloadHref: string;
+  };
+  legalPages: {
+    impressum: LegalPageContent;
+    datenschutzerklaerung: LegalPageContent;
+  };
 };
 
 type TextItem = {
@@ -82,6 +91,11 @@ type SectionIntro = {
 type LocationItem = {
   name: string;
   address: string;
+};
+
+export type LegalPageContent = {
+  title: string;
+  text: string;
 };
 
 export function getHomepageContent(): HomepageContent {
