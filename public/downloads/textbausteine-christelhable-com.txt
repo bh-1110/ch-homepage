@@ -3,25 +3,20 @@ Quelle: https://www.christelhable.com/
 Stand: 2026-05-10
 
 Mag Christel Hable, Psychotherapeutin in 1010 und 1170 Wien
-HOME
-ÜBER MICH
-THERAPIEN
-KONTAKT
-ÜBER MICH
-THERAPIEN
-KONTAKT
-PSYCHOTHERAPIE
-COVID-19 Krise: Kostenlose Krisenintervention (max 15 min) sowie Behandlungen nach gestaffelten Sozialtarifen.
-Ich arbeite nach Ihren Möglichkeiten telefonisch, über Skype, Facetime oder WhatsApp.
+
+HOME ÜBER MICH THERAPIEN KONTAKT ÜBER MICH THERAPIEN KONTAKT PSYCHOTHERAPIE
+
 "Der erste Schritt ist immer der Schwierigste"
 Herzlichen Glückwunsch, diesen haben Sie bereits hinter sich. Es ist der erste Schritt
 auf dem Weg Ihre Konflikte und Schwierigkeiten hinter sich zu lassen und Ihr Leben wieder
 vollends so zu gestalten, wie Sie es sich vorstellen.
+
 Psychotherapie hilft Leiden zu reduzieren und die positiven Faktoren in Ihrem Leben
 herauszustreichen und zu verbessern. Wurde Ihnen jemals, oder haben Sie sich sogar selbst
 gesagt: „Reiß Dich einfach zusammen!“? Sie fühlen sich jedoch wie gelähmt, weil Sie es
 einfach nicht schaffen. Psychotherapie hilft hier, sich nicht nur besser zu fühlen, sondern
 insgesamt ein positiveres Leben führen zu können.
+
 Meine Hauptgebiete sind:
 - Ängste, Phobien, Panikattacken
 - Depression
@@ -32,18 +27,22 @@ auf eine organische Erkrankung zurückführen lassen)
 - berufliche Veränderungen und damit verbundener Stress (Burn-out)
 - Familien- und Paarberatung
 - Coaching
+
 Es gibt viel Gutes zu genießen; viele interessante Leute kennen zu lernen. Auf der anderen
 Seite wird die Welt immer schneller, verlangt schnellere Entscheidungen und der Stress und
 die Anforderungen an den Einzelnen steigen; jedoch die Unterstützung ist viel zu gering.
 Ich helfe Menschen - Einzelpersonen wie auch Paaren - in dieser höchst energiegeladenen
 Umwelt aufzublühen
+
 Methode
 Die analytische Individualpsychologie ist eine tiefenpsychologische Methode. Begründer war
 Alfred Adler (1870-1937), dessen Schwerpunkt die unteilbare Einheit des Menschen von Körper
 und Psyche war. Die Individualpsychologie betrachtet den Menschen als Ganzheit mit seiner
 wechselseitigen Abhängigkeit von der Gesellschaft.
+
 Die Therapie findet entweder liegend oder sitzend, ein- bis zu dreimal wöchentlich statt,
 ganz auf Ihre Bedürfnisse und Wünsche angepasst.
+
 Kontakt
 Was lassen wir dem ersten bedeutsamen Schritt folgen?
 Um ein erstes Gespräch zu vereinbaren rufen Sie mein Büro unter
@@ -51,7 +50,9 @@ Um ein erstes Gespräch zu vereinbaren rufen Sie mein Büro unter
 Sie hier um per
 Email einen Termin zu fixieren. Ich kontaktiere Sie innerhalb von 24 Stunden um mit Ihnen den
 ersten Termin zu vereinbaren.
+
 Ich freue mich auf ein Treffen und mit Ihnen zusammenarbeiten zu können.
+
 ÜBER MICH
 MAG CHRISTEL HABLE
 Psychotherapeutin - Individualpsychologie
@@ -70,6 +71,7 @@ Wien, Abschluss März 2017.
 - Seit 2019 Eigene psychotherapeutische Praxis, individualpsychologische Analyse,
 Psychotherapeutin - Individualpsychologie.
 - Seit 2020 Eingetragen in die PsychotherapeutInnenliste des BM f Soziales, Gesundheit, Pflege und Konsumentenschutz.
+
 THERAPIEN
 Angst
 Bestimmen Angstzustände Ihr Leben?
@@ -92,6 +94,7 @@ Prädisposition, manchmal auch generationalisierte Angst, manchmal treten Angstz
 Verlust eines geliebten Menschen oder Trennungen. Weiters kann übergroßer Stress über einen
 längeren Zeitraum Angstzustände hervorrufen.Angstzustände sind meist gut behandelbar; sie
 können entweder aufgelöst oder soweit reduziert werden, dass sie Ihre Lebensqualität nicht mehr einschränken.
+
 Depressionen
 Fühlen Sie sich oft niedergeschlagen, erschöpft, hoffnungslos?
 Fallen Ihnen Entscheidungen schwer, leiden Sie an ungewöhnlicher Müdigkeit, egal wieviel Sie
@@ -109,6 +112,7 @@ unangemessene Selbstvorwürfe, Konzentrationsstörungen und verminderte Leistung
 auf. Leichte Formen der Depression führen zu fortdauernder Traurigkeit und
 Antriebslosigkeit. Schwere Formen, wie Unfähigkeit das Bett zu verlassen oder
 Selbstverletzungsgedanken sollen unverzüglich behandelt werden.
+
 Trauma
 Hatten Sie ein signifikante Begebenheit in Ihrem Leben an die Sie sich nur sehr schwer
 erinnern können?
@@ -135,6 +139,7 @@ Traumen auf und haben eine Vielzahl an Symptomen, z.B.:
 Für die Therapie psychosomatischer Erkrankungen ist eine tragfähige
 Therapeut - Patientenbeziehung unerlässlich, um diese Störungen langsam
 auflösen zu können.
+
 Somatoforme Erkrankungen
 Laufen Sie von Arzt zu Arzt, aber niemand kann Ihre Beschwerden lindern?
 Dauert dieser Marathon schon längere Zeit und sind Sie verzweifelt? Entwickeln sich
@@ -152,8 +157,10 @@ Somatoforme Störungen haben eine Vielzahl von Symptomen:
 Für die Therapie somatoformer Erkrankungen ist ein tragfähiges Vertrauensverhältnis
 zwischen Patient und Therapeut unerlässlich. Nur dann können diese Störungen langsam
 aufgelöst werden.
+
 Diese Website verwendet Cookies. Näheres in der
 Datenschutzerklärung. Durch die weitere Nutzung der Website erklären Sie sich damit einverstanden.
+
 CONTACT
 Meine Praxen befinden sich ...
 PRAXIS AM HOF
@@ -164,8 +171,8 @@ PRAXIS AM BERG
 1170 Wien, Gerhard Fritsch Gasse 62, Österreich
 Tel: (+43) 0699 1406 7524
 Email: mail@christelhable.com
+
 Zur Terminvereinbarung Nachricht senden:
-SENDE NACHRICHT
 zum Seitenbeginn
 © 2019-2022 Mag Christel Hable
 w3.css

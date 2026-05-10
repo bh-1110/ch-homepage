@@ -142,8 +142,7 @@ export function AdminContentEditor({ initialContent }: { initialContent: Homepag
             <Tabs.Tab value="angebot">Angebot</Tabs.Tab>
             <Tabs.Tab value="kontakt">Kontakt</Tabs.Tab>
             <Tabs.Tab value="blog">Blog</Tabs.Tab>
-            <Tabs.Tab value="footer">Footer</Tabs.Tab>
-            <Tabs.Tab value="rechtliches">Rechtliches</Tabs.Tab>
+
           </Tabs.List>
 
           <Tabs.Panel value="start" pt="lg">
@@ -246,38 +245,36 @@ export function AdminContentEditor({ initialContent }: { initialContent: Homepag
             <SectionIntroEditor title="Blog-Teaser" value={content.blogTeaser} path={['blogTeaser']} onChange={update} />
           </Tabs.Panel>
 
-          <Tabs.Panel value="footer" pt="lg">
-            <AdminCard title="Footer und Download">
-              <Stack>
-                <TextInput label="Footer-Text" value={content.footer.text} onChange={(event) => update(['footer', 'text'], event.currentTarget.value)} />
-                <SimpleGrid cols={{ base: 1, md: 2 }}>
-                  <TextInput label="Download-Beschriftung" value={content.footer.downloadLabel} onChange={(event) => update(['footer', 'downloadLabel'], event.currentTarget.value)} />
-                  <TextInput label="Download-Datei" value={content.footer.downloadHref} onChange={(event) => update(['footer', 'downloadHref'], event.currentTarget.value)} />
-                </SimpleGrid>
-              </Stack>
-            </AdminCard>
-          </Tabs.Panel>
-
-          <Tabs.Panel value="rechtliches" pt="lg">
-            <Stack gap="md">
-              <AdminCard title="Impressum">
-                <Stack>
-                  <TextInput label="Titel" value={content.legalPages.impressum.title} onChange={(event) => update(['legalPages', 'impressum', 'title'], event.currentTarget.value)} />
-                  <Textarea label="Text" minRows={16} value={content.legalPages.impressum.text} onChange={(event) => update(['legalPages', 'impressum', 'text'], event.currentTarget.value)} />
-                </Stack>
-              </AdminCard>
-
-              <AdminCard title="Datenschutzerklärung">
-                <Stack>
-                  <TextInput label="Titel" value={content.legalPages.datenschutzerklaerung.title} onChange={(event) => update(['legalPages', 'datenschutzerklaerung', 'title'], event.currentTarget.value)} />
-                  <Textarea label="Text" minRows={18} value={content.legalPages.datenschutzerklaerung.text} onChange={(event) => update(['legalPages', 'datenschutzerklaerung', 'text'], event.currentTarget.value)} />
-                </Stack>
-              </AdminCard>
-            </Stack>
-          </Tabs.Panel>
         </Tabs>
 
-        <Divider my="xl" />
+
+        <Stack gap="md" mt="xl">
+          <Text className="sectionLabel">Footer</Text>
+          <AdminCard title="Footer und Download">
+            <Stack>
+              <TextInput label="Footer-Text" value={content.footer.text} onChange={(event) => update(['footer', 'text'], event.currentTarget.value)} />
+              <SimpleGrid cols={{ base: 1, md: 2 }}>
+                <TextInput label="Download-Beschriftung" value={content.footer.downloadLabel} onChange={(event) => update(['footer', 'downloadLabel'], event.currentTarget.value)} />
+                <TextInput label="Download-Datei" value={content.footer.downloadHref} onChange={(event) => update(['footer', 'downloadHref'], event.currentTarget.value)} />
+              </SimpleGrid>
+            </Stack>
+          </AdminCard>
+
+          <Text className="sectionLabel">Rechtliches</Text>
+          <AdminCard title="Impressum">
+            <Stack>
+              <TextInput label="Titel" value={content.legalPages.impressum.title} onChange={(event) => update(['legalPages', 'impressum', 'title'], event.currentTarget.value)} />
+              <Textarea label="Text" minRows={16} value={content.legalPages.impressum.text} onChange={(event) => update(['legalPages', 'impressum', 'text'], event.currentTarget.value)} />
+            </Stack>
+          </AdminCard>
+
+          <AdminCard title="Datenschutzerklärung">
+            <Stack>
+              <TextInput label="Titel" value={content.legalPages.datenschutzerklaerung.title} onChange={(event) => update(['legalPages', 'datenschutzerklaerung', 'title'], event.currentTarget.value)} />
+              <Textarea label="Text" minRows={18} value={content.legalPages.datenschutzerklaerung.text} onChange={(event) => update(['legalPages', 'datenschutzerklaerung', 'text'], event.currentTarget.value)} />
+            </Stack>
+          </AdminCard>
+        </Stack>        <Divider my="xl" />
         <Group justify="space-between">
           <Button leftSection={<IconRefresh size={18} />} variant="default" onClick={() => window.location.reload()}>
             Neu laden

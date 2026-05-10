@@ -3,10 +3,6 @@ import './styles.css';
 
 import type { Metadata } from 'next';
 import { ColorSchemeScript, MantineProvider, createTheme } from '@mantine/core';
-import { FloatingActions } from './FloatingActions';
-import { GoogleAdsTag } from './GoogleAdsTag';
-import { GoogleTagManager } from './GoogleTagManager';
-import { getHomepageContent } from '../lib/homepage';
 
 export const metadata: Metadata = {
   title: 'Psychotherapie in Wien | Mag. Anna Berger',
@@ -43,8 +39,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { contact } = getHomepageContent();
-
   return (
     <html lang="de" data-mantine-color-scheme="light">
       <head>
@@ -53,18 +47,6 @@ export default function RootLayout({
       <body>
         <MantineProvider theme={theme} defaultColorScheme="light">
           {children}
-          <FloatingActions
-            phone={contact.phone}
-            email={contact.email}
-            emailSubject={contact.emailSubject}
-            emailBody={contact.emailBody}
-            phoneConversionSendTo={contact.phoneConversionSendTo}
-            emailConversionSendTo={contact.emailConversionSendTo}
-            conversionCurrency={contact.conversionCurrency}
-            conversionValue={contact.conversionValue}
-          />
-          <GoogleTagManager containerId={contact.googleTagManagerId} />
-          <GoogleAdsTag tagId={contact.googleAdsTagId} />
         </MantineProvider>
       </body>
     </html>

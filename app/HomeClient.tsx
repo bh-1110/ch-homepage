@@ -36,6 +36,9 @@ import {
 } from '@tabler/icons-react';
 import type { HomepageContent } from '../lib/homepage';
 import { trackContactAction } from './tracking';
+import { FloatingActions } from './FloatingActions';
+import { GoogleAdsTag } from './GoogleAdsTag';
+import { GoogleTagManager } from './GoogleTagManager';
 
 export function HomeClient({ content }: { content: HomepageContent }) {
   const [runtimeContent, setRuntimeContent] = useState(content);
@@ -72,6 +75,19 @@ export function HomeClient({ content }: { content: HomepageContent }) {
 
   return (
     <Box>
+      <GoogleTagManager containerId={content.contact.googleTagManagerId} />
+      <GoogleAdsTag tagId={content.contact.googleAdsTagId} />
+      <FloatingActions
+        phone={content.contact.phone}
+        email={content.contact.email}
+        emailSubject={content.contact.emailSubject}
+        emailBody={content.contact.emailBody}
+        phoneConversionSendTo={content.contact.phoneConversionSendTo}
+        emailConversionSendTo={content.contact.emailConversionSendTo}
+        conversionCurrency={content.contact.conversionCurrency}
+        conversionValue={content.contact.conversionValue}
+      />
+
       <Box className="hero">
         <Container size="xl">
           <Group justify="space-between" align="center" className="nav">
