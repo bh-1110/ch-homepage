@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "export": "next build --webpack"
+    "export": "next build --webpack",
+    "deploy:brevo-keepalive": "wrangler deploy --config workers/brevo-keepalive/wrangler.toml",
+    "test:smoke": "playwright test"
   },
   "dependencies": {
     "@mantine/core": "latest",
@@ -17,9 +19,11 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "typescript": "latest"
+    "typescript": "latest",
+    "wrangler": "^4.93.0"
   }
 }

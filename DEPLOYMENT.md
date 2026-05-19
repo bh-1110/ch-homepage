@@ -55,6 +55,34 @@ CONTACT_FORM_SUBJECT=Neue Anfrage über das Kontaktformular
 
 The CMS fields `Formular-Absender`, `Formular-Empfänger`, and `Formular-Betreff` are used by `/api/contact` when `CONTENT_DB` is available. Without a local D1 binding, the function falls back to the `.dev.vars` values above.
 
+## Brevo keepalive
+
+The standalone Worker in `workers/brevo-keepalive` sends one monthly technical email through Brevo. It runs on the first day of every month at 09:00 UTC.
+
+Before deploying the Worker, set its Brevo secret:
+
+```powershell
+npx wrangler secret put BREVO_API_KEY --config workers/brevo-keepalive/wrangler.toml
+```
+
+Then deploy it:
+
+```powershell
+npm run deploy:brevo-keepalive
+```
+
+The Pages project and the standalone Worker do not automatically share secrets. The same Brevo API key must therefore be stored once in Pages and once as this Worker secret.
+
+## Smoke test
+
+Run the browser smoke test with:
+
+```powershell
+npm run test:smoke
+```
+
+The test starts the local Next.js dev server, checks desktop and mobile rendering, verifies the mobile menu, checks the contact form validation, and mocks `/api/contact` so no real email is sent.
+
 ## Runtime CMS
 
 The `/admin` area edits homepage content at runtime and stores it in Cloudflare D1.

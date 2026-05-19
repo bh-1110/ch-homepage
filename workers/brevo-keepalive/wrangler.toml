@@ -1,0 +1,14 @@
+name = "brevo-keepalive"
+main = "src/index.js"
+compatibility_date = "2026-05-19"
+
+[triggers]
+crons = ["0 9 1 * *"]
+
+[vars]
+KEEPALIVE_ENABLED = "true"
+KEEPALIVE_SENDER_NAME = "christelhable.com Technik"
+KEEPALIVE_SENDER_EMAIL = "kontakt@christelhable.com"
+KEEPALIVE_RECIPIENT_EMAIL = "mail@christelhable.com"
+KEEPALIVE_SUBJECT = "Monatlicher Brevo-Test christelhable.com"
+KEEPALIVE_TEXT = "Automatischer monatlicher Test, damit der Brevo API-Key aktiv bleibt."
