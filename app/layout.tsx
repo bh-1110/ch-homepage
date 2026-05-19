@@ -2,12 +2,69 @@ import '@mantine/core/styles.css';
 import './styles.css';
 
 import type { Metadata } from 'next';
-import { ColorSchemeScript, MantineProvider, createTheme } from '@mantine/core';
+import { MantineProvider, createTheme } from '@mantine/core';
+
+const siteUrl = 'https://www.christelhable.com';
+const siteTitle = 'Psychotherapie und Coaching in Wien | Mag. Christel Hable';
+const siteDescription =
+  'Psychotherapie, Mentalcoaching und Business Coaching in 1010 und 1170 Wien. Vertrauliche Begleitung bei Belastung, Krisen, Stress, Führungsthemen und persönlicher Weiterentwicklung.';
 
 export const metadata: Metadata = {
-  title: 'Psychotherapie in Wien | Mag. Anna Berger',
-  description:
-    'Psychotherapeutische Praxis in Wien für Erwachsene, Jugendliche und Paare. Ruhige, wertschätzende Begleitung bei Belastung, Angst, Krisen und Beziehungsthemen.'
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: '%s | Mag. Christel Hable'
+  },
+  description: siteDescription,
+  applicationName: 'Mag. Christel Hable',
+  authors: [{ name: 'Mag. Christel Hable', url: siteUrl }],
+  creator: 'Mag. Christel Hable',
+  publisher: 'Mag. Christel Hable',
+  keywords: [
+    'Psychotherapie Wien',
+    'Psychotherapeutin Wien',
+    'Psychotherapie 1010 Wien',
+    'Psychotherapie 1170 Wien',
+    'Mentalcoaching Wien',
+    'Business Coaching Wien',
+    'Coaching Wien',
+    'Mag. Christel Hable'
+  ],
+  alternates: {
+    canonical: '/'
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'de_AT',
+    url: '/',
+    siteName: 'Mag. Christel Hable',
+    title: siteTitle,
+    description: siteDescription,
+    images: [
+      {
+        url: '/uploads/PortraitCH2.JPG',
+        width: 1200,
+        height: 900,
+        alt: 'Mag. Christel Hable'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+    images: ['/uploads/PortraitCH2.JPG']
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1
+    }
+  }
 };
 
 const theme = createTheme({
@@ -41,9 +98,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" data-mantine-color-scheme="light">
-      <head>
-        <ColorSchemeScript defaultColorScheme="light" />
-      </head>
       <body>
         <MantineProvider theme={theme} defaultColorScheme="light">
           {children}

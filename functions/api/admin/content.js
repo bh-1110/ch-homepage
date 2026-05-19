@@ -32,6 +32,15 @@ export async function onRequestPut({ env, request }) {
     return Response.json({ error: 'Request body must include content.' }, { status: 400 });
   }
 
+  if (payload.source !== 'd1' && !(payload.source === 'local-upload' && payload.confirmUpload === true)) {
+    return Response.json(
+      {
+        error: 'Refusing to save content that was not loaded from D1 first or explicitly uploaded.'
+      },
+      { status: 409 }
+    );
+  }
+
   const value = JSON.stringify(payload.content);
   const updatedAt = new Date().toISOString();
 

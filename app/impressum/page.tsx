@@ -2,7 +2,14 @@ import { LegalPageClient } from '../LegalPageClient';
 import { getHomepageContent } from '../../lib/homepage';
 
 export const metadata = {
-  title: 'Impressum | Mag. Christel Hable'
+  title: 'Impressum',
+  robots: {
+    index: false,
+    follow: true
+  },
+  alternates: {
+    canonical: '/impressum'
+  }
 };
 
 export default function ImpressumPage() {

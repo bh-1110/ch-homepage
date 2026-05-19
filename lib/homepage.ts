@@ -10,6 +10,8 @@ export type HomepageContent = {
   hero: {
     badge: string;
     title: string;
+    titles?: string[];
+    titleIntervalSeconds?: number | string;
     text: string;
     primaryButton: string;
     secondaryButton: string;
@@ -21,6 +23,13 @@ export type HomepageContent = {
   infoItems: TextItem[];
   servicesIntro: SectionIntro;
   services: TextItem[];
+  coaching: {
+    label: string;
+    title: string;
+    text: string;
+    image: string;
+    imageAlt: string;
+  };
   approach: {
     label: string;
     title: string;
@@ -54,9 +63,17 @@ export type HomepageContent = {
     emailBody: string;
     contactFormTitle: string;
     contactFormText: string;
+    contactFormNameLabel?: string;
+    contactFormPhoneLabel?: string;
+    contactFormEmailLabel?: string;
+    contactFormMessageLabel?: string;
+    contactFormPrivacyLabel?: string;
     contactFormButton: string;
     contactFormSuccess: string;
     contactFormEndpoint: string;
+    contactFormSender?: string;
+    contactFormRecipient?: string;
+    contactFormSubject?: string;
     googleTagManagerId: string;
     googleAdsTagId: string;
     phoneConversionSendTo: string;

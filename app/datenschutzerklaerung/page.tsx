@@ -2,7 +2,14 @@ import { LegalPageClient } from '../LegalPageClient';
 import { getHomepageContent } from '../../lib/homepage';
 
 export const metadata = {
-  title: 'Datenschutzerklärung | Mag. Christel Hable'
+  title: 'Datenschutzerklärung',
+  robots: {
+    index: false,
+    follow: true
+  },
+  alternates: {
+    canonical: '/datenschutzerklaerung'
+  }
 };
 
 export default function DatenschutzerklaerungPage() {

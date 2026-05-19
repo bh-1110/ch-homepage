@@ -1,19 +1,23 @@
 {
   "brand": {
-    "name": "Mag. Anna Berger",
+    "name": "Mag. Christel Hable",
     "subtitle": "Psychotherapeutin in Wien",
-    "mark": "AB"
+    "mark": "CH"
   },
   "hero": {
-    "badge": "Psychotherapie in 1070 Wien",
+    "badge": "Psychotherapie, Mental- und Businesscoaching in 1010 und 1170 Wien",
     "title": "Raum für Entlastung, Klarheit und neue innere Bewegung.",
     "text": "Ich begleite Erwachsene, Jugendliche und Paare in belastenden Lebensphasen. Die Gespräche sind ruhig, vertraulich und auf das abgestimmt, was Sie gerade brauchen.",
     "primaryButton": "Erstgespräch anfragen",
     "secondaryButton": "Angebot ansehen",
-    "image": "https://images.unsplash.com/photo-1738145899003-47fa8c34ac4b?auto=format&fit=crop&w=1200&q=85",
+    "image": "/uploads/PortraitCH2.JPG",
     "imageAlt": "Ruhiger Praxisraum mit Sitzgelegenheiten und Pflanzen",
     "noteTitle": "Vertraulicher Rahmen",
-    "noteText": "Vor Ort in Wien oder online, Termine nach Vereinbarung."
+    "noteText": "Vor Ort in Wien oder online, Termine nach Vereinbarung.",
+    "titleIntervalSeconds": 5,
+    "titles": [
+      "Raum für Entlastung, Klarheit und neue innere Bewegung."
+    ]
   },
   "infoItems": [
     {
@@ -52,6 +56,13 @@
       "text": "Psychotherapeutische Einheiten per Video, wenn der Weg in die Praxis gerade nicht möglich oder nicht passend ist."
     }
   ],
+  "coaching": {
+    "label": "Coaching",
+    "title": "Business- und Mentalcoaching",
+    "text": "Wir leben in einer immer komplexeren und schnelllebigeren Geschäftswelt, in der reines Fachwissen oft nicht mehr ausreichend ist. Mentale Stärke, Klarheit in der Zielsetzung und Stressresistenz sind zusätzliche entscheidende Faktoren.\n\nBusiness- und Mentalcoaching unterstützt Sie hierbei, ihr volles Potenzial zu entfalten. Coaching gibt Ihnen einen geschützten Raum für Reflexion, strategisches Denken und persönliche Weiterentwicklung.\n\nBusiness Coaching hilft dabei, Führungskompetenzen gezielt auszubauen. Es müssen klare Entscheidungen getroffen und wirksam kommuniziert und Teams nachhaltig motiviert werden. Es geht nicht nur um Techniken, sondern die eigene Haltung ist ausschlaggebend. Wer sich seiner eigenen Werte, Stärken und Motive bewusst ist, kann authentischer und erfolgreicher führen.\n\nMentalcoaching setzt tiefer an. Hier werden innere Blockaden identifiziert, die eine Entfaltung behindern. Durch gezielte Methoden wie z.B. Perspektivwechsel, Visualisierung werden mentale Barrieren aufgelöst. Das stärkt Resilienz, Selbstvertrauen und Fokus, essenzielle Faktoren für einen langfristigen Erfolg. Coaching unterstützt Visionen zu konkretisieren und realistische, messbare Schritte abzuleiten. Fortschritte werden sichtbar und Erfolge bewusster wahrgenommen, dadurch verlieren Rückschläge ihre lähmende Auswirkung.\n\nWer mental stark und emotional ausgeglichen ist, schafft nachhaltigen Erfolg - beruflich wie auch privat. Coaching ist keine kurzfristige Maßnahme, sondern eine Investition in das eigene Wachstum, Stabilität und bewusste Selbstgestaltung.",
+    "image": "/uploads/PortraitCH2.JPG",
+    "imageAlt": "Mag. Christel Hable im Coaching-Kontext"
+  },
   "approach": {
     "label": "Arbeitsweise",
     "title": "Fachlich fundiert, menschlich zugewandt.",
@@ -115,9 +126,17 @@
     "emailBody": "Sehr geehrte Frau Mag. Hable,\n\nich frage an um einen Termin für ein Erstgespräch zu vereinbaren.\n\nMeine Name ist: .........\nMeine Telefonnummer ist .......",
     "contactFormTitle": "Kontaktformular",
     "contactFormText": "Senden Sie uns eine kurze Nachricht. Bitte übermitteln Sie keine sensiblen Gesundheitsdaten über dieses Formular.",
+    "contactFormNameLabel": "Name",
+    "contactFormPhoneLabel": "Telefon",
+    "contactFormEmailLabel": "E-Mail",
+    "contactFormMessageLabel": "Nachricht",
+    "contactFormPrivacyLabel": "Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.",
     "contactFormButton": "Anfrage senden",
-    "contactFormSuccess": "Danke, die Anfrage wurde vorbereitet.",
-    "contactFormEndpoint": "",
+    "contactFormSuccess": "Danke, die Anfrage wurde gesendet.",
+    "contactFormEndpoint": "/api/contact",
+    "contactFormSender": "Kontaktformular <kontakt@christelhable.com>",
+    "contactFormRecipient": "mail@christelhable.com",
+    "contactFormSubject": "Neue Anfrage über das Kontaktformular",
     "googleTagManagerId": "",
     "googleAdsTagId": "",
     "phoneConversionSendTo": "",

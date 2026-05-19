@@ -1,6 +1,11 @@
 .next/
 out/
 node_modules/
+.env
+.env.local
+.env.*.local
+.dev.vars
+content/brevo_api_key.txt
 next-dev.log
 next-dev.err.log
 next-dev-live.log

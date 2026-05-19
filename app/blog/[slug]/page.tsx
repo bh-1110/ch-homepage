@@ -18,8 +18,18 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
   const post = getPostBySlug(slug);
 
   return {
-    title: `${post.title} | Psychotherapie in Wien`,
-    description: post.excerpt
+    title: post.title,
+    description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${post.slug}`
+    },
+    openGraph: {
+      type: 'article',
+      title: post.title,
+      description: post.excerpt,
+      publishedTime: post.date,
+      url: `/blog/${post.slug}`
+    }
   };
 }
 

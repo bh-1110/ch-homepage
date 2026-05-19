@@ -5,11 +5,13 @@ import {
   Anchor,
   Badge,
   Box,
+  Burger,
   Button,
   Card,
   Checkbox,
   Container,
   Divider,
+  Drawer,
   Grid,
   Group,
   List,
@@ -31,7 +33,6 @@ import {
   IconMapPin,
   IconMessageCircle,
   IconPhone,
-  IconShieldHeart,
   IconSparkles
 } from '@tabler/icons-react';
 import type { HomepageContent } from '../lib/homepage';
@@ -42,6 +43,9 @@ import { GoogleTagManager } from './GoogleTagManager';
 
 export function HomeClient({ content }: { content: HomepageContent }) {
   const [runtimeContent, setRuntimeContent] = useState(content);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeHeroTitleIndex, setActiveHeroTitleIndex] = useState(0);
+  const [previousHeroTitle, setPreviousHeroTitle] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -63,6 +67,30 @@ export function HomeClient({ content }: { content: HomepageContent }) {
   }, []);
 
   content = runtimeContent;
+  const heroTitles = getHeroTitles(content);
+  const activeHeroTitle = heroTitles[activeHeroTitleIndex % heroTitles.length];
+  const heroTitleIntervalMs = getHeroTitleIntervalMs(content);
+
+  useEffect(() => {
+    if (heroTitles.length < 2) {
+      setActiveHeroTitleIndex(0);
+      setPreviousHeroTitle(null);
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      setPreviousHeroTitle(heroTitles[activeHeroTitleIndex % heroTitles.length]);
+      setActiveHeroTitleIndex((index) => (index + 1) % heroTitles.length);
+    }, heroTitleIntervalMs);
+    const fadeTimer = previousHeroTitle
+      ? window.setTimeout(() => setPreviousHeroTitle(null), 900)
+      : undefined;
+
+    return () => {
+      window.clearInterval(timer);
+      if (fadeTimer) window.clearTimeout(fadeTimer);
+    };
+  }, [activeHeroTitleIndex, heroTitles, heroTitleIntervalMs, previousHeroTitle]);
 
   const contactEmailHref = `mailto:${content.contact.email}?subject=${encodeURIComponent(
     content.contact.emailSubject
@@ -72,6 +100,17 @@ export function HomeClient({ content }: { content: HomepageContent }) {
     <IconCalendarHeart key="calendar" size={20} />,
     <IconClock key="clock" size={20} />
   ];
+  const navItems = [
+    { label: 'Angebot', href: '#angebot' },
+    { label: 'Coaching', href: '#coaching' },
+    { label: 'Ablauf', href: '#ablauf' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Kontakt', href: '#kontakt' }
+  ];
+
+  function closeMobileMenu() {
+    setIsMobileMenuOpen(false);
+  }
 
   return (
     <Box>
@@ -89,7 +128,7 @@ export function HomeClient({ content }: { content: HomepageContent }) {
       />
 
       <Box className="hero">
-        <Container size="xl">
+        <Container size="xl" className="heroNavContainer">
           <Group justify="space-between" align="center" className="nav">
             <Group gap="sm">
               <Box className="brandMark">{content.brand.mark}</Box>
@@ -103,31 +142,76 @@ export function HomeClient({ content }: { content: HomepageContent }) {
               </Box>
             </Group>
             <Group gap="xs" visibleFrom="sm">
-              <Button component="a" href="#angebot" variant="subtle" color="dark">
-                Angebot
-              </Button>
-              <Button component="a" href="#ablauf" variant="subtle" color="dark">
-                Ablauf
-              </Button>
-              <Button component="a" href="/blog" variant="subtle" color="dark">
-                Blog
-              </Button>
+              {navItems.slice(0, -1).map((item) => (
+                <Button key={item.href} component="a" href={item.href} variant="subtle" color="dark">
+                  {item.label}
+                </Button>
+              ))}
               <Button component="a" href="#kontakt" variant="light" color="teal" leftSection={<IconMail size={17} />}>
                 Kontakt
               </Button>
             </Group>
+            <Burger
+              hiddenFrom="sm"
+              opened={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen((opened) => !opened)}
+              aria-label="Menü öffnen"
+              color="var(--ink)"
+            />
           </Group>
 
+          <Drawer
+            opened={isMobileMenuOpen}
+            onClose={closeMobileMenu}
+            position="right"
+            size="xs"
+            title={content.brand.name}
+            hiddenFrom="sm"
+          >
+            <Stack gap="xs">
+              {navItems.map((item) => (
+                <Button
+                  key={item.href}
+                  component="a"
+                  href={item.href}
+                  variant={item.href === '#kontakt' ? 'light' : 'subtle'}
+                  color={item.href === '#kontakt' ? 'teal' : 'dark'}
+                  justify="flex-start"
+                  onClick={closeMobileMenu}
+                  leftSection={item.href === '#kontakt' ? <IconMail size={17} /> : undefined}
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </Stack>
+          </Drawer>
+        </Container>
+
+        <Box className="heroStage">
+          <Paper className="imagePanel" radius="md">
+            <img className="heroBackdropImage" src={content.hero.image} alt="" aria-hidden="true" />
+            <img className="heroMainImage" src={content.hero.image} alt={content.hero.imageAlt} />
+            <Box className="heroTitleOverlay">
+              {previousHeroTitle && (
+                <Title order={1} className="heroTitle heroTitlePrevious">
+                  {previousHeroTitle}
+                </Title>
+              )}
+              <Title key={activeHeroTitle} order={1} className="heroTitle heroTitleCurrent">
+                {activeHeroTitle}
+              </Title>
+            </Box>
+          </Paper>
+        </Box>
+
+        <Container size="xl">
           <Grid align="center" gap={{ base: 32, md: 52 }} className="heroGrid">
-            <Grid.Col span={{ base: 12, md: 6 }}>
+            <Grid.Col span={{ base: 12, md: 7 }}>
               <Stack gap="xl">
                 <Badge variant="light" color="teal" size="lg" radius="sm">
                   {content.hero.badge}
                 </Badge>
                 <Stack gap="md">
-                  <Title order={1} className="heroTitle">
-                    {content.hero.title}
-                  </Title>
                   <Text size="xl" c="dimmed" maw={640}>
                     {content.hero.text}
                   </Text>
@@ -147,24 +231,6 @@ export function HomeClient({ content }: { content: HomepageContent }) {
                   </Button>
                 </Group>
               </Stack>
-            </Grid.Col>
-            <Grid.Col span={{ base: 12, md: 6 }}>
-              <Paper className="imagePanel" radius="md">
-                <img src={content.hero.image} alt={content.hero.imageAlt} />
-                <Paper className="heroNote" radius="md" shadow="lg">
-                  <Group gap="sm" align="flex-start">
-                    <ThemeIcon color="teal" variant="light" size="lg" radius="sm">
-                      <IconShieldHeart size={20} />
-                    </ThemeIcon>
-                    <Box>
-                      <Text fw={700}>{content.hero.noteTitle}</Text>
-                      <Text size="sm" c="dimmed">
-                        {content.hero.noteText}
-                      </Text>
-                    </Box>
-                  </Group>
-                </Paper>
-              </Paper>
             </Grid.Col>
           </Grid>
         </Container>
@@ -206,6 +272,27 @@ export function HomeClient({ content }: { content: HomepageContent }) {
           </Grid>
         </Container>
       </Box>
+
+      <Container size="xl" py={{ base: 56, md: 88 }} id="coaching">
+        <Grid align="center" gap={{ base: 32, md: 56 }}>
+          <Grid.Col span={{ base: 12, md: 5 }}>
+            <Box className="coachingImagePanel">
+              <img src={content.coaching.image} alt={content.coaching.imageAlt} />
+            </Box>
+          </Grid.Col>
+          <Grid.Col span={{ base: 12, md: 7 }}>
+            <Text className="sectionLabel">{content.coaching.label}</Text>
+            <Title order={2}>{content.coaching.title}</Title>
+            <Stack gap="md" mt="md">
+              {content.coaching.text.split('\n\n').map((paragraph) => (
+                <Text key={paragraph} c="dimmed" size="lg">
+                  {paragraph}
+                </Text>
+              ))}
+            </Stack>
+          </Grid.Col>
+        </Grid>
+      </Container>
 
       <Container size="xl" py={{ base: 56, md: 88 }}>
         <Grid align="center" gap={{ base: 32, md: 56 }}>
@@ -328,10 +415,14 @@ export function HomeClient({ content }: { content: HomepageContent }) {
                     <Box className="mapFrame">
                       <iframe
                         title={`Karte ${location.name}`}
-                        src={getMapUrl(`${location.name}, ${location.address}`)}
+                        src={getMapUrl(location.address)}
+                        referrerPolicy="no-referrer-when-downgrade"
                         loading="lazy"
                       />
                     </Box>
+                    <Anchor href={getMapLink(location.address)} target="_blank" rel="noreferrer" size="sm">
+                      In Google Maps öffnen
+                    </Anchor>
                   </Box>
                 ))}
               </SimpleGrid>
@@ -351,7 +442,7 @@ export function HomeClient({ content }: { content: HomepageContent }) {
               </Text>
             </Grid.Col>
             <Grid.Col span={{ base: 12, md: 7 }}>
-              <ContactForm content={content} contactEmailHref={contactEmailHref} />
+              <ContactForm content={content} />
             </Grid.Col>
           </Grid>
         </Container>
@@ -370,15 +461,22 @@ export function HomeClient({ content }: { content: HomepageContent }) {
               <Anchor href="/datenschutzerklaerung" size="sm" c="dark">
                 Datenschutzerklärung
               </Anchor>
-              <Anchor href={content.footer.downloadHref} size="sm" c="dark" download>
-                {content.footer.downloadLabel}
-              </Anchor>
             </Group>
           </Group>
         </Container>
       </Box>
     </Box>
   );
+}
+
+function getHeroTitles(content: HomepageContent) {
+  const titles = content.hero.titles?.map((title) => title.trim()).filter(Boolean);
+  return titles?.length ? titles : [content.hero.title];
+}
+
+function getHeroTitleIntervalMs(content: HomepageContent) {
+  const seconds = Number(content.hero.titleIntervalSeconds);
+  return Number.isFinite(seconds) && seconds > 0 ? seconds * 1000 : 5000;
 }
 
 function mergeHomepageContent(fallback: HomepageContent, runtime: Partial<HomepageContent>): HomepageContent {
@@ -388,6 +486,7 @@ function mergeHomepageContent(fallback: HomepageContent, runtime: Partial<Homepa
     brand: { ...fallback.brand, ...runtime.brand },
     hero: { ...fallback.hero, ...runtime.hero },
     servicesIntro: { ...fallback.servicesIntro, ...runtime.servicesIntro },
+    coaching: { ...fallback.coaching, ...runtime.coaching },
     approach: { ...fallback.approach, ...runtime.approach },
     process: { ...fallback.process, ...runtime.process },
     blogTeaser: { ...fallback.blogTeaser, ...runtime.blogTeaser },
@@ -406,84 +505,121 @@ function mergeHomepageContent(fallback: HomepageContent, runtime: Partial<Homepa
   };
 }
 
-function ContactForm({
-  content,
-  contactEmailHref
-}: {
-  content: HomepageContent;
-  contactEmailHref: string;
-}) {
+function ContactForm({ content }: { content: HomepageContent }) {
   const [status, setStatus] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [phoneTouched, setPhoneTouched] = useState(false);
+  const contactFormEndpoint = content.contact.contactFormEndpoint || '/api/contact';
+  const hasValidEmail = isEmail(email);
+  const hasValidPhone = isPlausiblePhone(phone);
+  const canSubmit = hasValidEmail || hasValidPhone;
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    if (!canSubmit) {
+      setPhoneTouched(true);
+      setStatus('Bitte geben Sie eine gültige Telefonnummer oder E-Mail-Adresse ein.');
+      return;
+    }
+
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const payload = Object.fromEntries(formData.entries());
 
     trackContactAction('contact_form_submit_click', {
       contact_action: 'contact_form_submit',
-      has_endpoint: Boolean(content.contact.contactFormEndpoint)
+      has_endpoint: true
     });
 
-    if (content.contact.contactFormEndpoint) {
-      const response = await fetch(content.contact.contactFormEndpoint, {
+    setIsSubmitting(true);
+    setStatus('');
+
+    try {
+      const response = await fetch(contactFormEndpoint, {
         method: 'POST',
         body: formData
       });
 
       if (response.ok) {
         form.reset();
+        setEmail('');
+        setPhone('');
+        setPhoneTouched(false);
         setStatus(content.contact.contactFormSuccess);
       } else {
         setStatus('Die Anfrage konnte nicht gesendet werden. Bitte nutzen Sie E-Mail oder Telefon.');
       }
-
-      return;
+    } catch {
+      setStatus('Die Anfrage konnte nicht gesendet werden. Bitte nutzen Sie E-Mail oder Telefon.');
+    } finally {
+      setIsSubmitting(false);
     }
-
-    const body = [
-      content.contact.emailBody,
-      '',
-      '--- Formularangaben ---',
-      `Name: ${payload.name ?? ''}`,
-      `Telefon: ${payload.phone ?? ''}`,
-      `E-Mail: ${payload.email ?? ''}`,
-      `Nachricht: ${payload.message ?? ''}`
-    ].join('\n');
-    const href = `mailto:${content.contact.email}?subject=${encodeURIComponent(
-      content.contact.emailSubject
-    )}&body=${encodeURIComponent(body)}`;
-
-    setStatus(content.contact.contactFormSuccess);
-    window.location.href = href || contactEmailHref;
   }
 
   return (
     <Paper component="form" className="contactFormPanel" radius="md" p="xl" onSubmit={handleSubmit}>
       <Stack gap="md">
         <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
-          <TextInput name="name" label="Name" required />
-          <TextInput name="phone" label="Telefon" />
+          <TextInput name="name" label={content.contact.contactFormNameLabel || 'Name'} required />
+          <TextInput
+            name="phone"
+            label={content.contact.contactFormPhoneLabel || 'Telefon'}
+            value={phone}
+            onChange={(event) => setPhone(event.currentTarget.value)}
+            onBlur={() => setPhoneTouched(true)}
+            error={phoneTouched && phone.trim() && !hasValidPhone ? 'Bitte geben Sie eine plausible Telefonnummer ein.' : undefined}
+          />
         </SimpleGrid>
-        <TextInput name="email" label="E-Mail" type="email" required />
-        <Textarea name="message" label="Nachricht" minRows={5} required />
+        <TextInput
+          name="email"
+          label={content.contact.contactFormEmailLabel || 'E-Mail'}
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.currentTarget.value)}
+        />
+        <Textarea name="message" label={content.contact.contactFormMessageLabel || 'Nachricht'} minRows={5} required />
         <Checkbox
           required
           name="privacy"
-          label="Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden."
+          label={
+            content.contact.contactFormPrivacyLabel ||
+            'Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.'
+          }
         />
         <Group justify="space-between" align="center">
           <Text size="sm" c="dimmed">
             {status}
           </Text>
-          <Button type="submit" color="teal" rightSection={<IconArrowRight size={17} />}>
+          <Button
+            type="submit"
+            color="teal"
+            loading={isSubmitting}
+            disabled={!canSubmit}
+            rightSection={<IconArrowRight size={17} />}
+          >
             {content.contact.contactFormButton}
           </Button>
         </Group>
       </Stack>
     </Paper>
   );
+}
+
+function isEmail(value: string) {
+  const trimmed = value.trim();
+  return Boolean(trimmed) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+}
+
+function isPlausiblePhone(value: string) {
+  const trimmed = value.trim();
+
+  if (!trimmed) return false;
+  if (!/^\+?[0-9][0-9\s()./-]*$/.test(trimmed)) return false;
+
+  const digits = trimmed.replace(/\D/g, '');
+  return digits.length >= 7 && digits.length <= 15;
 }
 
 function InfoItem({ icon, title, text }: { icon: React.ReactNode; title: string; text: string }) {
@@ -524,5 +660,9 @@ function ContactLine({ icon, text, href }: { icon: React.ReactNode; text: string
 }
 
 function getMapUrl(query: string) {
-  return `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
+  return `https://maps.google.com/maps?output=embed&z=15&q=${encodeURIComponent(query)}`;
+}
+
+function getMapLink(query: string) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }

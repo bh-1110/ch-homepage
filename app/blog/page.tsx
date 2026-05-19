@@ -2,8 +2,11 @@ import { getAllPosts } from '../../lib/blog';
 import { BlogIndexClient } from './BlogIndexClient';
 
 export const metadata = {
-  title: 'Blog | Psychotherapie in Wien',
-  description: 'Gedanken und Impulse aus der psychotherapeutischen Praxis in Wien.'
+  title: 'Blog',
+  description: 'Gedanken und Impulse zu Psychotherapie, Mentalcoaching und persönlicher Entwicklung in Wien.',
+  alternates: {
+    canonical: '/blog'
+  }
 };
 
 export default function BlogPage() {
