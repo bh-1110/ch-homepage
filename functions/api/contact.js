@@ -76,6 +76,18 @@ function buildMessage({ name, phone, email, message, url }) {
   ].join('\n');
 }
 
+async function readBrevoResponse(response) {
+  const text = await response.text().catch(() => '');
+
+  if (!text) return null;
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    return { message: text };
+  }
+}
+
 export async function onRequestPost({ env, request }) {
   const formData = await request.formData();
   const name = clean(formData.get('name'));
@@ -138,11 +150,37 @@ export async function onRequestPost({ env, request }) {
     body: JSON.stringify(emailPayload)
   });
 
+  const responseBody = await readBrevoResponse(response);
+
   if (!response.ok) {
-    const details = await response.text().catch(() => '');
-    console.error('Brevo mail failed', response.status, details.slice(0, 500));
-    return Response.json({ error: 'Mailversand ist fehlgeschlagen.' }, { status: 502 });
+    const brevoCode = responseBody?.code;
+    const brevoMessage = responseBody?.message;
+
+    console.error(
+      'Brevo mail failed',
+      JSON.stringify({
+        status: response.status,
+        code: brevoCode,
+        message: brevoMessage
+      })
+    );
+
+    return Response.json(
+      {
+        error: 'Mailversand ist fehlgeschlagen.',
+        provider: 'brevo',
+        providerStatus: response.status,
+        providerCode: brevoCode,
+        providerMessage: brevoMessage
+      },
+      { status: 502 }
+    );
   }
 
-  return Response.json({ ok: true });
+  return Response.json({
+    ok: true,
+    provider: 'brevo',
+    providerStatus: response.status,
+    messageId: responseBody?.messageId ?? null
+  });
 }

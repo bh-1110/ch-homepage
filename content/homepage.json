@@ -132,7 +132,7 @@
     "contactFormMessageLabel": "Nachricht",
     "contactFormPrivacyLabel": "Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.",
     "contactFormButton": "Anfrage senden",
-    "contactFormSuccess": "Danke, die Anfrage wurde gesendet.",
+    "contactFormSuccess": "Vielen Dank für Ihre Kontaktaufnahme; ich werde mich bei Ihnen melden sobald es mir möglich ist.",
     "contactFormEndpoint": "/api/contact",
     "contactFormSender": "Kontaktformular <kontakt@christelhable.com>",
     "contactFormRecipient": "mail@christelhable.com",

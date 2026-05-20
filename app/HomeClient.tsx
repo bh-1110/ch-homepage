@@ -15,6 +15,7 @@ import {
   Grid,
   Group,
   List,
+  Modal,
   Paper,
   SimpleGrid,
   Stack,
@@ -29,6 +30,7 @@ import {
   IconCalendarHeart,
   IconChevronRight,
   IconClock,
+  IconCheck,
   IconMail,
   IconMapPin,
   IconMessageCircle,
@@ -507,6 +509,7 @@ function mergeHomepageContent(fallback: HomepageContent, runtime: Partial<Homepa
 
 function ContactForm({ content }: { content: HomepageContent }) {
   const [status, setStatus] = useState('');
+  const [successOpen, setSuccessOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -541,15 +544,20 @@ function ContactForm({ content }: { content: HomepageContent }) {
         method: 'POST',
         body: formData
       });
+      const data = await response.json().catch(() => null);
 
       if (response.ok) {
         form.reset();
         setEmail('');
         setPhone('');
         setPhoneTouched(false);
-        setStatus(content.contact.contactFormSuccess);
+        setStatus('');
+        setSuccessOpen(true);
       } else {
-        setStatus('Die Anfrage konnte nicht gesendet werden. Bitte nutzen Sie E-Mail oder Telefon.');
+        const providerInfo = data?.providerStatus
+          ? ` Brevo-Status: ${data.providerStatus}${data.providerCode ? ` / ${data.providerCode}` : ''}.`
+          : '';
+        setStatus(`Die Anfrage konnte nicht gesendet werden. Bitte nutzen Sie E-Mail oder Telefon.${providerInfo}`);
       }
     } catch {
       setStatus('Die Anfrage konnte nicht gesendet werden. Bitte nutzen Sie E-Mail oder Telefon.');
@@ -559,51 +567,66 @@ function ContactForm({ content }: { content: HomepageContent }) {
   }
 
   return (
-    <Paper component="form" className="contactFormPanel" radius="md" p="xl" onSubmit={handleSubmit}>
-      <Stack gap="md">
-        <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
-          <TextInput name="name" label={content.contact.contactFormNameLabel || 'Name'} required />
+    <>
+      <Paper component="form" className="contactFormPanel" radius="md" p="xl" onSubmit={handleSubmit}>
+        <Stack gap="md">
+          <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
+            <TextInput name="name" label={content.contact.contactFormNameLabel || 'Name'} required />
+            <TextInput
+              name="phone"
+              label={content.contact.contactFormPhoneLabel || 'Telefon'}
+              value={phone}
+              onChange={(event) => setPhone(event.currentTarget.value)}
+              onBlur={() => setPhoneTouched(true)}
+              error={phoneTouched && phone.trim() && !hasValidPhone ? 'Bitte geben Sie eine plausible Telefonnummer ein.' : undefined}
+            />
+          </SimpleGrid>
           <TextInput
-            name="phone"
-            label={content.contact.contactFormPhoneLabel || 'Telefon'}
-            value={phone}
-            onChange={(event) => setPhone(event.currentTarget.value)}
-            onBlur={() => setPhoneTouched(true)}
-            error={phoneTouched && phone.trim() && !hasValidPhone ? 'Bitte geben Sie eine plausible Telefonnummer ein.' : undefined}
+            name="email"
+            label={content.contact.contactFormEmailLabel || 'E-Mail'}
+            type="email"
+            value={email}
+            onChange={(event) => setEmail(event.currentTarget.value)}
           />
-        </SimpleGrid>
-        <TextInput
-          name="email"
-          label={content.contact.contactFormEmailLabel || 'E-Mail'}
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.currentTarget.value)}
-        />
-        <Textarea name="message" label={content.contact.contactFormMessageLabel || 'Nachricht'} minRows={5} required />
-        <Checkbox
-          required
-          name="privacy"
-          label={
-            content.contact.contactFormPrivacyLabel ||
-            'Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.'
-          }
-        />
-        <Group justify="space-between" align="center">
-          <Text size="sm" c="dimmed">
-            {status}
-          </Text>
-          <Button
-            type="submit"
-            color="teal"
-            loading={isSubmitting}
-            disabled={!canSubmit}
-            rightSection={<IconArrowRight size={17} />}
-          >
-            {content.contact.contactFormButton}
+          <Textarea name="message" label={content.contact.contactFormMessageLabel || 'Nachricht'} minRows={5} required />
+          <Checkbox
+            required
+            name="privacy"
+            label={
+              content.contact.contactFormPrivacyLabel ||
+              'Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.'
+            }
+          />
+          <Group justify="space-between" align="center">
+            <Text size="sm" c={status ? 'red' : 'dimmed'}>
+              {status}
+            </Text>
+            <Button
+              type="submit"
+              color="teal"
+              loading={isSubmitting}
+              disabled={!canSubmit}
+              rightSection={<IconArrowRight size={17} />}
+            >
+              {content.contact.contactFormButton}
+            </Button>
+          </Group>
+        </Stack>
+      </Paper>
+
+      <Modal opened={successOpen} onClose={() => setSuccessOpen(false)} centered withCloseButton={false} size="md">
+        <Stack align="center" gap="lg" ta="center" py="md">
+          <ThemeIcon size={64} radius="xl" color="teal" variant="light">
+            <IconCheck size={36} />
+          </ThemeIcon>
+          <Title order={2}>Nachricht gesendet</Title>
+          <Text size="lg">{content.contact.contactFormSuccess}</Text>
+          <Button size="lg" color="teal" onClick={() => setSuccessOpen(false)}>
+            Schließen
           </Button>
-        </Group>
-      </Stack>
-    </Paper>
+        </Stack>
+      </Modal>
+    </>
   );
 }
 

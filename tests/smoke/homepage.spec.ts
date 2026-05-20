@@ -70,7 +70,10 @@ test('contact form requires email or plausible phone and can submit through mock
   await page.getByLabel(/Ich bin einverstanden/i).check();
   await submit.click();
 
-  await expect(page.getByText(/Danke, die Anfrage wurde gesendet/i)).toBeVisible();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await expect(page.getByText(/Vielen Dank für Ihre Kontaktaufnahme/i)).toBeVisible();
+  await page.getByRole('button', { name: 'Schließen' }).click();
+  await expect(page.getByRole('dialog')).toBeHidden();
 });
 
 test('static support pages are reachable', async ({ page }) => {
