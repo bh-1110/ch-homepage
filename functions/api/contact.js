@@ -88,6 +88,16 @@ async function readBrevoResponse(response) {
   }
 }
 
+function json(data, init = {}) {
+  return Response.json(data, {
+    ...init,
+    headers: {
+      'Cache-Control': 'no-store',
+      ...(init.headers || {})
+    }
+  });
+}
+
 export async function onRequestPost({ env, request }) {
   const formData = await request.formData();
   const name = clean(formData.get('name'));
@@ -97,25 +107,25 @@ export async function onRequestPost({ env, request }) {
   const privacy = formData.get('privacy');
 
   if (!name || !message || !privacy) {
-    return Response.json({ error: 'Bitte füllen Sie alle Pflichtfelder aus.' }, { status: 400 });
+    return json({ error: 'Bitte füllen Sie alle Pflichtfelder aus.' }, { status: 400 });
   }
 
   if (!email && !phone) {
-    return Response.json({ error: 'Bitte geben Sie eine Telefonnummer oder E-Mail-Adresse ein.' }, { status: 400 });
+    return json({ error: 'Bitte geben Sie eine Telefonnummer oder E-Mail-Adresse ein.' }, { status: 400 });
   }
 
   if (email && !isEmail(email)) {
-    return Response.json({ error: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.' }, { status: 400 });
+    return json({ error: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.' }, { status: 400 });
   }
 
   if (phone && !isPlausiblePhone(phone)) {
-    return Response.json({ error: 'Bitte geben Sie eine plausible Telefonnummer ein.' }, { status: 400 });
+    return json({ error: 'Bitte geben Sie eine plausible Telefonnummer ein.' }, { status: 400 });
   }
 
   const brevoApiKey = env.BREVO_API_KEY || env.SENDINBLUE_API_KEY;
 
   if (!brevoApiKey) {
-    return Response.json({ error: 'Mailversand ist nicht konfiguriert.' }, { status: 503 });
+    return json({ error: 'Mailversand ist nicht konfiguriert.' }, { status: 503 });
   }
 
   const cmsContact = await loadCmsContact(env);
@@ -129,7 +139,7 @@ export async function onRequestPost({ env, request }) {
   const textContent = buildMessage({ name, phone, email, message, url: request.url });
 
   if (!isEmail(sender.email) || to.length === 0 || !to.every((recipient) => isEmail(recipient.email))) {
-    return Response.json({ error: 'Mailversand ist falsch konfiguriert.' }, { status: 503 });
+    return json({ error: 'Mailversand ist falsch konfiguriert.' }, { status: 503 });
   }
 
   const emailPayload = {
@@ -165,7 +175,7 @@ export async function onRequestPost({ env, request }) {
       })
     );
 
-    return Response.json(
+    return json(
       {
         error: 'Mailversand ist fehlgeschlagen.',
         provider: 'brevo',
@@ -177,7 +187,7 @@ export async function onRequestPost({ env, request }) {
     );
   }
 
-  return Response.json({
+  return json({
     ok: true,
     provider: 'brevo',
     providerStatus: response.status,

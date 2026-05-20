@@ -52,7 +52,7 @@ export function HomeClient({ content }: { content: HomepageContent }) {
   useEffect(() => {
     let active = true;
 
-    fetch('/api/content', { cache: 'no-store' })
+    fetch(`/api/content?ts=${Date.now()}`, { cache: 'no-store' })
       .then((response) => (response.ok ? response.json() : null))
       .then((data) => {
         if (active && data?.content) {
@@ -544,7 +544,8 @@ function ContactForm({ content }: { content: HomepageContent }) {
         method: 'POST',
         body: formData
       });
-      const data = await response.json().catch(() => null);
+      const responseText = await response.text().catch(() => '');
+      const data = parseJsonOrNull(responseText);
 
       if (response.ok) {
         form.reset();
@@ -554,10 +555,7 @@ function ContactForm({ content }: { content: HomepageContent }) {
         setStatus('');
         setSuccessOpen(true);
       } else {
-        const providerInfo = data?.providerStatus
-          ? ` Brevo-Status: ${data.providerStatus}${data.providerCode ? ` / ${data.providerCode}` : ''}.`
-          : '';
-        setStatus(`Die Anfrage konnte nicht gesendet werden. Bitte nutzen Sie E-Mail oder Telefon.${providerInfo}`);
+        setStatus(buildContactErrorMessage(response.status, data, responseText));
       }
     } catch {
       setStatus('Die Anfrage konnte nicht gesendet werden. Bitte nutzen Sie E-Mail oder Telefon.');
@@ -633,6 +631,32 @@ function ContactForm({ content }: { content: HomepageContent }) {
 function isEmail(value: string) {
   const trimmed = value.trim();
   return Boolean(trimmed) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+}
+
+function parseJsonOrNull(value: string) {
+  if (!value) return null;
+
+  try {
+    return JSON.parse(value) as Record<string, unknown>;
+  } catch {
+    return null;
+  }
+}
+
+function buildContactErrorMessage(status: number, data: Record<string, unknown> | null, responseText: string) {
+  const providerStatus = data?.providerStatus;
+  const providerCode = data?.providerCode;
+  const providerMessage = data?.providerMessage;
+  const fallbackMessage = typeof data?.error === 'string' ? data.error : 'Die Anfrage konnte nicht gesendet werden.';
+  const details = [
+    `HTTP-Status: ${status}`,
+    providerStatus ? `Brevo-Status: ${providerStatus}` : '',
+    providerCode ? `Brevo-Code: ${providerCode}` : '',
+    providerMessage ? `Brevo-Meldung: ${providerMessage}` : '',
+    !data && responseText ? `Antwort: ${responseText.slice(0, 120)}` : ''
+  ].filter(Boolean);
+
+  return `${fallbackMessage} Bitte nutzen Sie E-Mail oder Telefon. ${details.join(' | ')}`;
 }
 
 function isPlausiblePhone(value: string) {

@@ -1,6 +1,16 @@
+function json(data, init = {}) {
+  return Response.json(data, {
+    ...init,
+    headers: {
+      'Cache-Control': 'no-store',
+      ...(init.headers || {})
+    }
+  });
+}
+
 export async function onRequestGet({ env }) {
   if (!env.CONTENT_DB) {
-    return Response.json({ content: null, source: 'missing-d1-binding' }, { status: 200 });
+    return json({ content: null, source: 'missing-d1-binding' }, { status: 200 });
   }
 
   try {
@@ -13,16 +23,16 @@ export async function onRequestGet({ env }) {
       .first();
 
     if (!row) {
-      return Response.json({ content: null, source: 'empty' }, { status: 200 });
+      return json({ content: null, source: 'empty' }, { status: 200 });
     }
 
-    return Response.json({
+    return json({
       content: JSON.parse(row.value),
       updatedAt: row.updated_at,
       source: 'd1'
     });
   } catch (error) {
-    return Response.json(
+    return json(
       {
         content: null,
         error: error instanceof Error ? error.message : 'Unable to load content.'

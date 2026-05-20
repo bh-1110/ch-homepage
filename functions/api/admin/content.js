@@ -4,9 +4,19 @@ async function ensureTable(db) {
     .run();
 }
 
+function json(data, init = {}) {
+  return Response.json(data, {
+    ...init,
+    headers: {
+      'Cache-Control': 'no-store',
+      ...(init.headers || {})
+    }
+  });
+}
+
 export async function onRequestGet({ env }) {
   if (!env.CONTENT_DB) {
-    return Response.json({ error: 'CONTENT_DB binding is not configured.' }, { status: 500 });
+    return json({ error: 'CONTENT_DB binding is not configured.' }, { status: 500 });
   }
 
   await ensureTable(env.CONTENT_DB);
@@ -15,7 +25,7 @@ export async function onRequestGet({ env }) {
     .bind('homepage')
     .first();
 
-  return Response.json({
+  return json({
     content: row ? JSON.parse(row.value) : null,
     updatedAt: row?.updated_at ?? null
   });
@@ -23,17 +33,17 @@ export async function onRequestGet({ env }) {
 
 export async function onRequestPut({ env, request }) {
   if (!env.CONTENT_DB) {
-    return Response.json({ error: 'CONTENT_DB binding is not configured.' }, { status: 500 });
+    return json({ error: 'CONTENT_DB binding is not configured.' }, { status: 500 });
   }
 
   const payload = await request.json();
 
   if (!payload || typeof payload !== 'object' || !payload.content) {
-    return Response.json({ error: 'Request body must include content.' }, { status: 400 });
+    return json({ error: 'Request body must include content.' }, { status: 400 });
   }
 
   if (payload.source !== 'd1' && !(payload.source === 'local-upload' && payload.confirmUpload === true)) {
-    return Response.json(
+    return json(
       {
         error: 'Refusing to save content that was not loaded from D1 first or explicitly uploaded.'
       },
@@ -51,5 +61,5 @@ export async function onRequestPut({ env, request }) {
     .bind('homepage', value, updatedAt)
     .run();
 
-  return Response.json({ ok: true, updatedAt });
+  return json({ ok: true, updatedAt });
 }
