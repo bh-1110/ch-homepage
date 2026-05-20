@@ -46,7 +46,12 @@ test('contact form requires email or plausible phone and can submit through mock
     await route.fulfill({
       status: 200,
       contentType: 'application/json',
-      body: JSON.stringify({ ok: true })
+      body: JSON.stringify({
+        ok: true,
+        provider: 'brevo',
+        providerStatus: 201,
+        messageId: '<debug-message-id>'
+      })
     });
   });
 
@@ -72,6 +77,9 @@ test('contact form requires email or plausible phone and can submit through mock
 
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.getByText(/Vielen Dank für Ihre Kontaktaufnahme/i)).toBeVisible();
+  await expect(page.getByText(/HTTP-Status: 200/i)).toBeVisible();
+  await expect(page.getByText(/Provider-Status: 201/i)).toBeVisible();
+  await expect(page.getByText(/Message-ID: <debug-message-id>/i)).toBeVisible();
   await page.getByRole('button', { name: 'Schließen' }).click();
   await expect(page.getByRole('dialog')).toBeHidden();
 });
