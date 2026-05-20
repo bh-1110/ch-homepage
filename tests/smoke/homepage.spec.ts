@@ -76,6 +76,34 @@ test('contact form requires email or plausible phone and can submit through mock
   await expect(page.getByRole('dialog')).toBeHidden();
 });
 
+test('contact form shows provider errors from failed endpoint', async ({ page }) => {
+  await page.route('**/api/contact', async (route) => {
+    await route.fulfill({
+      status: 502,
+      contentType: 'application/json',
+      body: JSON.stringify({
+        error: 'Mailversand ist fehlgeschlagen.',
+        provider: 'brevo',
+        providerStatus: 401,
+        providerCode: 'unauthorized',
+        providerMessage: 'Key not found'
+      })
+    });
+  });
+
+  await page.goto('/#kontaktformular');
+
+  await page.getByRole('textbox', { name: 'Telefon' }).fill('+49 30 1234567');
+  await page.getByRole('textbox', { name: 'Name' }).fill('Smoke Test');
+  await page.getByRole('textbox', { name: 'Nachricht' }).fill('Automatischer Smoke-Test mit Fehlerantwort.');
+  await page.getByLabel(/Ich bin einverstanden/i).check();
+  await page.getByRole('button', { name: /Anfrage senden/i }).click();
+
+  await expect(page.getByText(/HTTP-Status: 502/i)).toBeVisible();
+  await expect(page.getByText(/Brevo-Status: 401/i)).toBeVisible();
+  await expect(page.getByText(/Brevo-Code: unauthorized/i)).toBeVisible();
+});
+
 test('static support pages are reachable', async ({ page }) => {
   for (const path of ['/impressum', '/datenschutzerklaerung', '/blog', '/robots.txt', '/sitemap.xml']) {
     const response = await page.goto(path);

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import {
+  Alert,
   Anchor,
   Badge,
   Box,
@@ -26,6 +27,7 @@ import {
   Title
 } from '@mantine/core';
 import {
+  IconAlertCircle,
   IconArrowRight,
   IconCalendarHeart,
   IconChevronRight,
@@ -509,6 +511,7 @@ function mergeHomepageContent(fallback: HomepageContent, runtime: Partial<Homepa
 
 function ContactForm({ content }: { content: HomepageContent }) {
   const [status, setStatus] = useState('');
+  const [statusColor, setStatusColor] = useState<'blue' | 'red'>('blue');
   const [successOpen, setSuccessOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [email, setEmail] = useState('');
@@ -524,6 +527,7 @@ function ContactForm({ content }: { content: HomepageContent }) {
 
     if (!canSubmit) {
       setPhoneTouched(true);
+      setStatusColor('red');
       setStatus('Bitte geben Sie eine gültige Telefonnummer oder E-Mail-Adresse ein.');
       return;
     }
@@ -537,13 +541,18 @@ function ContactForm({ content }: { content: HomepageContent }) {
     });
 
     setIsSubmitting(true);
-    setStatus('');
+    setStatusColor('blue');
+    setStatus('Nachricht wird gesendet...');
 
     try {
+      const controller = new AbortController();
+      const timeout = window.setTimeout(() => controller.abort(), 15_000);
       const response = await fetch(contactFormEndpoint, {
         method: 'POST',
-        body: formData
+        body: formData,
+        signal: controller.signal
       });
+      window.clearTimeout(timeout);
       const responseText = await response.text().catch(() => '');
       const data = parseJsonOrNull(responseText);
 
@@ -555,10 +564,12 @@ function ContactForm({ content }: { content: HomepageContent }) {
         setStatus('');
         setSuccessOpen(true);
       } else {
+        setStatusColor('red');
         setStatus(buildContactErrorMessage(response.status, data, responseText));
       }
-    } catch {
-      setStatus('Die Anfrage konnte nicht gesendet werden. Bitte nutzen Sie E-Mail oder Telefon.');
+    } catch (error) {
+      setStatusColor('red');
+      setStatus(buildNetworkErrorMessage(error));
     } finally {
       setIsSubmitting(false);
     }
@@ -595,10 +606,12 @@ function ContactForm({ content }: { content: HomepageContent }) {
               'Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.'
             }
           />
-          <Group justify="space-between" align="center">
-            <Text size="sm" c={status ? 'red' : 'dimmed'}>
+          {status && (
+            <Alert color={statusColor} icon={statusColor === 'red' ? <IconAlertCircle size={18} /> : undefined}>
               {status}
-            </Text>
+            </Alert>
+          )}
+          <Group justify="flex-end" align="center">
             <Button
               type="submit"
               color="teal"
@@ -631,6 +644,15 @@ function ContactForm({ content }: { content: HomepageContent }) {
 function isEmail(value: string) {
   const trimmed = value.trim();
   return Boolean(trimmed) && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+}
+
+function buildNetworkErrorMessage(error: unknown) {
+  if (error instanceof DOMException && error.name === 'AbortError') {
+    return 'Der Mailversand dauert zu lange und wurde abgebrochen. Bitte nutzen Sie E-Mail oder Telefon. HTTP-Status: keine Antwort';
+  }
+
+  const message = error instanceof Error ? error.message : 'Unbekannter Fehler';
+  return `Die Anfrage konnte nicht gesendet werden. Bitte nutzen Sie E-Mail oder Telefon. Technischer Fehler: ${message}`;
 }
 
 function parseJsonOrNull(value: string) {
