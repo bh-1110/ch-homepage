@@ -512,7 +512,6 @@ function mergeHomepageContent(fallback: HomepageContent, runtime: Partial<Homepa
 function ContactForm({ content }: { content: HomepageContent }) {
   const [status, setStatus] = useState('');
   const [statusColor, setStatusColor] = useState<'blue' | 'red'>('blue');
-  const [debugInfo, setDebugInfo] = useState('');
   const [successOpen, setSuccessOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [email, setEmail] = useState('');
@@ -544,7 +543,6 @@ function ContactForm({ content }: { content: HomepageContent }) {
     setIsSubmitting(true);
     setStatusColor('blue');
     setStatus('Nachricht wird gesendet...');
-    setDebugInfo('');
 
     try {
       const controller = new AbortController();
@@ -557,9 +555,6 @@ function ContactForm({ content }: { content: HomepageContent }) {
       window.clearTimeout(timeout);
       const responseText = await response.text().catch(() => '');
       const data = parseJsonOrNull(responseText);
-      const debug = buildContactDebugInfo(response.status, data, responseText);
-      console.info('[contact-form-result]', debug);
-      setDebugInfo(debug);
 
       if (response.ok) {
         form.reset();
@@ -573,9 +568,6 @@ function ContactForm({ content }: { content: HomepageContent }) {
         setStatus(buildContactErrorMessage(response.status, data, responseText));
       }
     } catch (error) {
-      const debug = buildNetworkDebugInfo(error);
-      console.info('[contact-form-result]', debug);
-      setDebugInfo(debug);
       setStatusColor('red');
       setStatus(buildNetworkErrorMessage(error));
     } finally {
@@ -640,16 +632,6 @@ function ContactForm({ content }: { content: HomepageContent }) {
           </ThemeIcon>
           <Title order={2}>Nachricht gesendet</Title>
           <Text size="lg">{content.contact.contactFormSuccess}</Text>
-          {debugInfo && (
-            <Alert color="blue" w="100%" ta="left">
-              <Text fw={700} mb={6}>
-                Technische Versandbestätigung
-              </Text>
-              <Text component="pre" size="sm" style={{ margin: 0, whiteSpace: 'pre-wrap' }}>
-                {debugInfo}
-              </Text>
-            </Alert>
-          )}
           <Button size="lg" color="teal" onClick={() => setSuccessOpen(false)}>
             Schließen
           </Button>
@@ -673,16 +655,6 @@ function buildNetworkErrorMessage(error: unknown) {
   return `Die Anfrage konnte nicht gesendet werden. Bitte nutzen Sie E-Mail oder Telefon. Technischer Fehler: ${message}`;
 }
 
-function buildNetworkDebugInfo(error: unknown) {
-  const message = error instanceof Error ? error.message : String(error);
-
-  return [
-    'Kontaktformular Debug',
-    'Fetch-Status: fehlgeschlagen',
-    `Technischer Fehler: ${message}`
-  ].join('\n');
-}
-
 function parseJsonOrNull(value: string) {
   if (!value) return null;
 
@@ -691,19 +663,6 @@ function parseJsonOrNull(value: string) {
   } catch {
     return null;
   }
-}
-
-function buildContactDebugInfo(status: number, data: Record<string, unknown> | null, responseText: string) {
-  return [
-    'Kontaktformular Debug',
-    `HTTP-Status: ${status}`,
-    `Provider: ${data?.provider ?? '-'}`,
-    `Provider-Status: ${data?.providerStatus ?? '-'}`,
-    `Provider-Code: ${data?.providerCode ?? '-'}`,
-    `Provider-Meldung: ${data?.providerMessage ?? '-'}`,
-    `Message-ID: ${data?.messageId ?? '-'}`,
-    `Raw Response: ${responseText || '-'}`
-  ].join('\n');
 }
 
 function buildContactErrorMessage(status: number, data: Record<string, unknown> | null, responseText: string) {
